@@ -1,0 +1,105 @@
+{% extends 'base.html'%}
+
+{% block style %}
+<style>
+    .centered{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input{
+        width: 20rem;
+    }
+
+    .column-arrangement{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #login{
+        height:70vh;
+    }
+
+
+    #login-form{
+        display: grid;
+        grid-template-areas: 
+            "label input"
+            "empty submit";
+        grid-template-rows: 10rem 3rem;
+    }
+
+    #login-label{
+        grid-area: label;
+        margin: 5rem;
+    }
+
+    #login-input{
+        grid-area: input;
+        margin: 5rem;
+    }
+
+    #login-submit{
+        grid-area: submit;
+        margin: 5rem;
+    }
+
+    #main-container{
+        height:100vh;
+    }
+
+    .control{
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+<section id="login" class="centered">
+        <form action="/authenticate/" method="POST">
+            {% csrf_token %}
+            <div  id="login-form" class="centered column-arrangement">
+                <p id="login-label" class="is-size-2 centered">Autentificare</label>
+                <div id="login-input" class="container">
+                    {% for field in form %}
+                        <div class="field">
+                            <div class="control has-icons-right">
+                                {{ field }}
+
+                                {% comment %} <span class="icon is-medium is-right">
+                                    <i class="far {{ field.icon }}"></i>
+                                </span> {% endcomment %}
+
+
+                                {% for error in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <input id="login-submit" type="submit" class="button is-primary" value="Accesează" >  
+            </div>
+            {% comment %} \
+                <div class="field">
+                    <div class="control has-icons-right">
+                        <input class="input is-rounded is-primary is-medium" type="text" placeholder="Nume de utilizator" value="{{ username }}">
+                        <span class="icon is-medium is-right">
+                            <i class="far fa-user"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control has-icons-right">
+                        <input class="input is-rounded is-primary is-medium" type="password" placeholder="Parolă" value="{{ password }}">
+                        <span class="icon is-medium is-right">
+                            <i class="fas fa-asterisk"></i>
+                        </span>
+                    </div>
+                </div>
+            {% endcomment %}            
+        </form>
+</section>
+{% endblock content %}
