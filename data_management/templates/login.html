@@ -1,26 +1,13 @@
 {% extends 'base.html'%}
 
 {% block style %}
-<style>
-    .centered{
-        display:flex;
-        justify-content: center;
-        align-items: center;
-    }
-
     .input{
         width: 20rem;
     }
-
-    .column-arrangement{
-        display: flex;
-        flex-direction: column;
-    }
-
     #login{
         height:70vh;
-    }
 
+    }
 
     #login-form{
         display: grid;
@@ -28,31 +15,27 @@
             "label input"
             "empty submit";
         grid-template-rows: 10rem 3rem;
+        grid-template-columns: 20rem 20rem;
+        margin: 30px;
     }
 
     #login-label{
         grid-area: label;
-        margin: 5rem;
+        margin-left:3rem;
     }
 
     #login-input{
         grid-area: input;
-        margin: 5rem;
     }
 
     #login-submit{
         grid-area: submit;
-        margin: 5rem;
-    }
-
-    #main-container{
-        height:100vh;
+        width: 20rem;
     }
 
     .control{
         margin-bottom: 1rem;
     }
-</style>
 {% endblock style %}
 
 
@@ -61,11 +44,11 @@
         <form action="/authenticate/" method="POST">
             {% csrf_token %}
             <div  id="login-form" class="centered column-arrangement">
-                <p id="login-label" class="is-size-2 centered">Autentificare</label>
+                <p id="login-label" class="is-size-2"> Autentificare </label>
                 <div id="login-input" class="container">
                     {% for field in form %}
                         <div class="field">
-                            <div class="control has-icons-right">
+                            <div class="control">
                                 {{ field }}
 
                                 {% comment %} <span class="icon is-medium is-right">
