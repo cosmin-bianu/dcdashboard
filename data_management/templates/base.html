@@ -8,14 +8,32 @@
         <link rel="stylesheet" href="{% static "bulma.css" %}" type="text/css">
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 
-        {% block style %}
+        <style>
+            
+            #main-container{
+                height:85vh;
+            }            
 
-        {% endblock style %}
+            .column-arrangement{
+                display: flex;
+                flex-direction: column;
+            }
+
+            .centered{
+                display:flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            {% block style %}
+
+            {% endblock style %}
+        </style>
     </head>
     <body>
         {% include 'nav.html'%}
 
-        <div id="main-container">
+        <div id="main-container" class="centered">
         {% block content %}
 
         {% endblock content %}
