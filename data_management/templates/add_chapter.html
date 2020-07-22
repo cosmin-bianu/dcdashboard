@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+    .input{
+        width: 30rem;
+    }
+
+    .control{
+        margin-bottom: 1rem;
+    }
+
+{% endblock style %}
+
+{% block content %}
+
+
+<div class="column-arrangement centered">
+    <h3 class="is-size-3 mb-6"> Adaugă un capitol </h3>
+    <form action="/manage/chapters/add" method="POST">
+        {% csrf_token %}
+        <div class="centered column-arrangement">
+            {% for field in form %}
+            <div class="control">
+                {{ field }}
+
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            {% endfor %}
+            
+            <input type="submit" class="mt-6 button is-primary" value="Adaugă">
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
