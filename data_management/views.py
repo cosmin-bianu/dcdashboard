@@ -32,7 +32,7 @@ def authenticate_redirect_view(request):
         logger.error('Not a POST request. Request method: ' + request.method)
         return redirect('login')
 
-@login_required(login_url='')
+@login_required(login_url='login')
 def dashboard_view(request):
     context = {}
     context["username"] = request.user.username
