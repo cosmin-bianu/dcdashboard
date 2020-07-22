@@ -1,10 +1,77 @@
 {% extends "base.html"%}
 
+{% block style %}
+
+    .column-arrangement{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .centered{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .button{
+        width: 7rem;
+    }
+
+    #questionnaires-tile{
+        height: 30rem;
+        width: 50rem;
+        background-color: #21D4FD;
+        background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+    }
+
+    #courses-tile{
+        height: 30rem;
+        width: 50rem;
+        background-color: #FEE140;
+        background-image: linear-gradient(90deg, #FEE140 0%, #FA709A 100%);
+    }
+
+    #chapters-tile{
+        height: 30rem;
+        width: 50rem;
+        background-color: #08AEEA;
+        background-image: linear-gradient(207deg, #08AEEA 0%, #26d182 100%);
+    }
+
+
+
+{% endblock style %}
+
 {% block content %}
 
 
-<h3 class="centered">
-User {{username}} has logged in.
-</h3>
+<div class="mx-5 my-5 tile is-ancestor centered">
+    <div class="tile is-parent is-10 has-text-white column-arrangement centered">
+        <div id="questionnaires-tile" class="tile  column-arrangement notification mx-2 my-2 centered">
+            <h3 class="is-size-3 has-text-weight-bold"> Întrebări </h3>
+
+            <p class="mb-3 is-size-1 has-text-weight-bold"> {{ question_count }}</p>
+
+            <a href="view/questions" class="button is-size-6 is-white is-outlined">Vizualizează</a>
+        </div>
+
+        <div id="courses-tile" class="tile column-arrangement notification mx-2 my-2 centered">
+            <h3 class="is-size-3 has-text-weight-bold"> Cursuri </h3>
+
+            <p class="mb-3 is-size-1 has-text-weight-bold"> {{ course_count }}</p>
+
+            <a href="view/courses" class="button is-size-6 is-white is-outlined">Vizualizează</a>
+        </div>
+
+        <div id="chapters-tile" class="tile column-arrangement notification is-info mx-2 my-2 centered">
+            <h3 class="is-size-3 has-text-weight-bold"> Capitole </h3>
+
+            <p class="mb-3 is-size-1 has-text-weight-bold"> {{ chapters_count }}</p>
+
+            <a href="view/chapters" class="button is-size-6 is-white is-outlined">Vizualizează</a>
+        </div>
+    </div>
+</div>
+
 
 {% endblock content %}
