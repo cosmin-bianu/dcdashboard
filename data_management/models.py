@@ -1,10 +1,10 @@
 from django.db import models
-
+from django.contrib.auth import get_user_model
 
 #TODO
 # Create your models here.
 class Chapter(models.Model):
-    max_name_length=50 #characters
+    max_name_length=100 #characters
     
     chapter_id=models.SmallAutoField(primary_key=True)
     name=models.CharField(max_length=max_name_length,default="")
@@ -51,8 +51,11 @@ class FourAnswerExercise(Exercise):
     ))
 
 class Course(models.Model):
-    max_question_length=250 #characters
+    max_content_length=300 #characters
 
     course_id=models.SmallAutoField(primary_key=True)
-    content=models.CharField(max_length=max_question_length)
+    name=models.CharField(max_length=100) #characters
+    author=models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    content=models.CharField(max_length=max_content_length)
+    chapter=models.ForeignKey("Chapter", on_delete=models.CASCADE)
     
