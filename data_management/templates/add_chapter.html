@@ -16,7 +16,7 @@
 
 
 <div class="column-arrangement centered">
-    <h3 class="is-size-3 mb-6"> Adaugă un capitol </h3>
+    {% comment %} <h3 class="is-size-3 mb-6"> Adaugă un capitol </h3> {% endcomment %}
     <form action="/manage/chapters/add" method="POST">
         {% csrf_token %}
         <div class="centered column-arrangement">
@@ -30,7 +30,7 @@
             </div>
             {% endfor %}
             
-            <input type="submit" class="mt-6 button is-primary" value="Adaugă">
+            <input type="submit" class="mt-1 button is-primary" value="Adaugă">
         </div>
     </form>
 </div>
