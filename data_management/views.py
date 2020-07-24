@@ -55,6 +55,7 @@ def dashboard_view(request):
         "chapters_count": Chapter.objects.count(), 
         "question_count":  TwoAnswerExercise.objects.count() + FourAnswerExercise.objects.count(),
         "course_count": Course.objects.count(),
+        'disable_column':True,
     }
     return render(request, "dashboard.html", context)
     
@@ -299,8 +300,6 @@ def manage_chapters_remove(request):
     Chapter.objects.filter(chapter_id=target_id).delete()
     return redirect('view_chapters')
 
-
-#TODO nothing to display
 #TODO EDIT PAGES
 
 #TODO ADD FISIERE (poate imagini?)

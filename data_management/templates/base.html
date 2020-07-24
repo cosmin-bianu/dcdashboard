@@ -50,8 +50,9 @@
         {% include 'nav.html'%}
 
         <div id="main-container" class="centered">
-
-            {% comment %} <div class="column-arrangement"> {% endcomment %}
+            {% if disable_column == None %}
+            <div class="column-arrangement">
+            {% endif %}
                 {% if page_title %}
                     <h2 class="subtitle has-text-weight-bold is-size-3"> {{ page_title }} </h2>  
                 {% endif %}
@@ -69,7 +70,7 @@
                 {% block content %}
 
                 {% endblock content %}
-            {% comment %} </div> {% endcomment %}
+            </div>
         </div>
 
     </body>
