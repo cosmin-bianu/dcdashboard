@@ -2,49 +2,42 @@
 
 {% block style %}
 
-    .column-arrangement{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .centered{
-        display:flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .button{
-        width: 7rem;
-    }
-
     #disabled{
-        height: 30rem;
-        width: 30rem;
+        {% comment %} height: 30rem;
+        width: 30rem; {% endcomment %}
+        max-width: 50rem;
         background: #bdc3c7; /* fallback for old browsers */
         background: -webkit-linear-gradient(to right, #bdc3c7, #2c3e50); /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to right, #bdc3c7, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
 
     #questionnaires-tile{
-        height: 30rem;
-        width: 30rem;
+        {% comment %} height: 30rem;
+        width: 30rem; {% endcomment %}
+        max-width: 50rem;
         background-color: #21D4FD;
         background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);*/
     } 
 
 
     #courses-tile{
-        height: 30rem;
-        width: 30rem;
+        {% comment %} height: 30rem;
+        width: 30rem; {% endcomment %}
+        max-width: 50rem;
         background-color: #FEE140;
         background-image: linear-gradient(90deg, #FEE140 0%, #FA709A 100%);
     }
 
     #chapters-tile{
-        height: 28rem;
-        width: 30rem;
+        {% comment %} height: 28rem;
+        width: 30rem; {% endcomment %}
+        max-width: 50rem;
         background-color: #08AEEA;
         background-image: linear-gradient(207deg, #08AEEA 0%, #26d182 100%);
+    }
+
+    #main-container{
+        max-width:100rem;
     }
 
 
@@ -54,9 +47,9 @@
 {% block content %}
 
 
-<div class="mx-5 my-5 tile is-ancestor centered">
-    <div class="tile is-parent has-text-white column-arrangement centered">
-        <div id="disabled" class="tile column-arrangement notification centered">
+<div class="tile is-ancestor has-text-white">
+    <div class="tile is-parent is-vertical">
+        <div id="disabled" class="tile is-child column-arrangement notification centered">
             <h3 class="is-size-3 has-text-weight-bold"> Întrebări </h3>
 
             <p class="mb-3 is-size-1 has-text-weight-bold"> {{ question_count }}</p>
@@ -64,7 +57,7 @@
             <a href="view/questions" class="button is-size-6 is-white is-outlined" disabled>Vizualizează</a>
         </div>
 
-        <div id="courses-tile" class="tile column-arrangement notification centered">
+        <div id="courses-tile" class="tile is-child column-arrangement notification centered">
             <h3 class="is-size-3 has-text-weight-bold"> Lecții </h3>
 
             <p class="mb-3 is-size-1 has-text-weight-bold"> {{ course_count }}</p>
@@ -73,12 +66,14 @@
         </div>
     </div>
 
-    <div id="chapters-tile" class="tile column-arrangement notification is-info centered">
-        <h3 class="is-size-3 has-text-weight-bold"> Capitole </h3>
+    <div class="tile is-parent">
+        <div id="chapters-tile" class="tile is-child column-arrangement notification is-info centered">
+            <h3 class="is-size-3 has-text-weight-bold"> Capitole </h3>
 
-        <p class="mb-3 is-size-1 has-text-weight-bold"> {{ chapters_count }}</p>
+            <p class="mb-3 is-size-1 has-text-weight-bold"> {{ chapters_count }}</p>
 
-        <a href="view/chapters" class="button is-size-6 is-white is-outlined">Vizualizează</a>
+            <a href="view/chapters" class="button is-size-6 is-white is-outlined">Vizualizează</a>
+        </div>
     </div>
 </div>
 
