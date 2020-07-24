@@ -13,8 +13,7 @@ class Chapter(models.Model):
     def create(cls, name):
         chapter = cls(name=name)
         chapter.save()
-        # do something with the book
-        return cls(name=name)
+        return chapter
 
 
 class Exercise(models.Model):
