@@ -6,3 +6,4 @@ old.db.sqlite3
 older.db.sqlite3
 drept_civil_dashboard/wsgi.py
 drept_civil_dashboard/settings.py
+.vscode
