@@ -31,7 +31,7 @@
         {% for chapter,count in chapters.items %}
         <tr>
             <td>{{chapter.name}}</td>
-            <td> <a href="/view/courses/detailed?id={{ chapter.chapter_id }}" class="button is-outlined is-info"> {{count}} </a> </td>
+            <td> <a href="/view/courses/detailed?id={{ chapter.chapter_id }}" class="button is-outlined is-link"> {{count}} </a> </td>
             <td></td>
         </tr>
         {% empty %}
