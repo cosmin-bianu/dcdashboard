@@ -14,14 +14,10 @@
             body{
                 height:100vh;
             }
-
-            .button{
-                width: 7rem;
-            }
-
+            
             #main-container{
                 height:80vh;
-                width:100%;
+                width:100vw;
                 margin:auto;
                 padding:0;
             }            
@@ -50,7 +46,7 @@
         {% include 'nav.html'%}
 
         <div id="main-container" class="centered">
-            {% if disable_column == None %}
+            {% if disable_column is None %}
             <div class="column-arrangement">
             {% endif %}
                 {% if page_title %}
@@ -70,7 +66,10 @@
                 {% block content %}
 
                 {% endblock content %}
+            
+            {% if disable_column is None %}
             </div>
+            {% endif %}
         </div>
 
     </body>
