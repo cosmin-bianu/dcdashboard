@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block style %}
+
+.table-cell{
+    width: 20rem;
+}
+
+{% endblock style %}
+
+{% block content %}
+
+<table class="table is-hoverable is-size-5">
+    <thead>
+        <tr>
+            <th class="table-cell">Capitole</th>
+            <th class="table-cell">Nr. lecții</th>
+            <th>
+                <a href="/view/chapters/add" class="button is-rounded is-primary">
+                    <span class="icon">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                    <span>Adaugă un capitol</span>
+                </a>
+            </th>
+        </tr>
+    </thead>  
+    <tfoot>
+    </tfoot>
+    <tbody>
+        {% for chapter,count in chapters.items %}
+        <tr>
+            <td>{{chapter.name}}</td>
+            <td> <a href="/view/courses/detailed?id={{ chapter.chapter_id }}"> {{count}} </a> </td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% comment %} TODO buton de stergere {% endcomment %}
+
+{% endblock content %}

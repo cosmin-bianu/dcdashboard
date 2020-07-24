@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block style %}
+
+.table-cell{
+    width: 30rem;
+}
+
+{% endblock style %}
+
+{% block content %}
+
+<table class="table is-hoverable is-size-5">
+    <thead>
+        <tr>
+            <th class="table-cell">Numele lecției</th>
+            <th class="table-cell">Autor</th>
+            <th>
+                <a href="/view/courses/add?source_id={{ source_id }}" class="button is-rounded is-primary">
+                    <span class="icon">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                    <span>Adaugă o lecție</span>
+                </a>
+            </th>
+        </tr>
+    </thead>  
+    <tfoot>
+    </tfoot>
+    <tbody>
+        {% for item in data %}
+            <tr>
+                <!--TODO SEND TO EDIT PAGE-->
+                <td> {{ item.0 }} </td>
+                <td> {{ item.1 }} </td>
+                <td> 
+                    <a href="/manage/courses/remove?id={{ item.2 }}&source_id={{ source_id }}" class="button is-danger is-small has-text-weight-bold"> Șterge </a> 
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
