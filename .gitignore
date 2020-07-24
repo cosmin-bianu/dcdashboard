@@ -5,3 +5,4 @@ data_management/migrations/__pycache__/__init__.cpython-36.pyc
 data_management/migrations/__pycache__/0001_initial.cpython-36.pyc
 data_management/migrations/0001_initial.py
 old.db.sqlite3
+older.db.sqlite3
