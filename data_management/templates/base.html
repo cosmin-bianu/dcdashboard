@@ -25,6 +25,10 @@
                 align-items: center;
             }
 
+            #page-title{
+                margin-bottom: 1rem;
+            }
+
             {% block style %}
 
             {% endblock style %}
@@ -34,9 +38,26 @@
         {% include 'nav.html'%}
 
         <div id="main-container" class="centered">
-        {% block content %}
 
-        {% endblock content %}
+            <div class="column-arrangement">
+                {% if page_title %}
+                    <h2 class="subtitle has-text-weight-bold is-size-3"> {{ page_title }} </h2>  
+                {% endif %}
+
+                {% if breadcrumbs %}
+                    <nav class="breadcrumb is-medium" aria-label="breadcrumbs">
+                        <ul>
+                    {% for crumb in breadcrumbs %}
+                        <li {% if crumb.current_page %}class="is-active"{% endif %}><a href="{{ crumb.link }}"> {{ crumb.name }}</a></li>                    
+                    {% endfor %}
+                        </ul>
+                    </nav>
+                {% endif %}
+
+                {% block content %}
+
+                {% endblock content %}
+            </div class="column-arrangement">
         </div>
 
     </body>
