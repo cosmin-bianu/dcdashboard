@@ -102,9 +102,9 @@ def manage_courses_general_view(request):
 @require_http_methods(["GET"])
 @login_required(login_url='login')
 def manage_courses_detailed_view(request):
-    target_id = request.GET.get("id", None)
-    if target_id is not None:
-        chapter=Chapter.objects.get(chapter_id=target_id)
+    source_id = request.GET.get("id", None)
+    if source_id is not None:
+        chapter=Chapter.objects.get(chapter_id=source_id)
         courses=Course.objects.filter(chapter__chapter_id=chapter.chapter_id)
         
         breadcrumbs = [
@@ -113,16 +113,20 @@ def manage_courses_detailed_view(request):
             {"name":chapter.name, "link":"#", "current_page":True},
         ]
 
-        data=[]
+        processed_courses=[]
 
         for i,course in enumerate(courses):
-            data.append([course.name, course.author.get_full_name(), course.course_id])
+            processed_courses.append({
+                "name":course.name, 
+                "author":course.author.get_full_name(),
+                "id":course.course_id,
+                })
 
         context={
             "page_title":chapter.name,
             "breadcrumbs":breadcrumbs,
-            "data":data,
-            "source_id":target_id,
+            "courses":processed_courses,
+            "source_id":source_id,
         }
         return render(request, "view_courses_detail.html", context)
     else:
@@ -161,11 +165,16 @@ def manage_chapters_add_view(request):
 
 
 #Edit pages
+@require_http_methods(["GET"])
+@login_required(login_url='login')
+def manage_questions_edit_view(request):
+    #TODO
+    return render(request, "edit_course.html", context)
 
 @require_http_methods(["GET"])
 @login_required(login_url='login')
 def manage_courses_edit_view(request):
-    course_id=request.GET.get("source_id", None)
+    course_id=request.GET.get("id", None)
     course=Course.objects.get(course_id=course_id)
     name=course.name
     author=course.author
@@ -173,7 +182,7 @@ def manage_courses_edit_view(request):
     chapter=course.chapter
 
     context = {
-        "page_title": "Adaugă o lecție",
+        "page_title": "Modifică o lecție",
         "form":CourseCreationForm(initial={
             'name':name,
             'author':author,
@@ -182,6 +191,20 @@ def manage_courses_edit_view(request):
         'course_id':course_id
     }
     return render(request, "edit_course.html", context)
+
+@require_http_methods(["GET"])
+@login_required(login_url='login')
+def manage_chapters_edit_view(request):
+    #TODO
+    return render(request, "edit_course.html", context)
+
+
+
+
+
+
+################################## API #########################################
+
 
 # Add API
 
@@ -203,10 +226,10 @@ def manage_courses_add(request):
         name=name,
         author=author,
         content=content,
-        chapter=chapter
+        chapter=chapter,
     )
     course.save()
-    return redirect('/view/courses/detailed?id={}'.format(chapter.chapter_id))
+    return redirect('/view/courses/detailed?id={}'.format(chapter_id))
 
 @require_http_methods(["POST"])
 @login_required(login_url='login')
@@ -229,8 +252,21 @@ def manage_questions_edit(request):
 @require_http_methods(["POST"])
 @login_required(login_url='login')
 def manage_courses_edit(request):
-    #TODO
-    return redirect('view_chapters')
+    course_id=request.POST.get("course_id", None)
+    course=Course.objects.get(pk=course_id)
+    name=request.POST.get("name", None)
+    author_id=request.POST.get("author", None)
+    author=User.objects.get(id=author_id)
+    content=request.POST.get("content", None)
+    chapter_id=request.POST.get("chapter", None)
+    chapter=Chapter.objects.get(chapter_id=chapter_id)
+
+    course.name=name
+    course.author=author
+    course.content=content
+    course.chapter=chapter
+    course.save()
+    return redirect('/view/courses/detailed?id={}'.format(chapter_id))
 
 
 @require_http_methods(["POST"])
@@ -267,4 +303,4 @@ def manage_chapters_remove(request):
 #TODO nothing to display
 #TODO EDIT PAGES
 
-#TODO ADD FISIERE
+#TODO ADD FISIERE (poate imagini?)
