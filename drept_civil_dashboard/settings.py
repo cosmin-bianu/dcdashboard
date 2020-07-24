@@ -23,7 +23,7 @@ print(BASE_DIR)
 SECRET_KEY = 'k5imd#72%a62d=97n4oj(y^t@5azaybqgzgr+%5lej7y#mq+*0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -125,5 +125,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
      os.path.join(BASE_DIR, "/static"),
      os.path.join(BASE_DIR, "data_management/static"),
-    #  '/mnt/c/Users/Cosmin/OneDrive/Documents/Workspace/drept_civil_dashboard/data_management/static'
 ]
+
+#Security settings
+SESSION_COOKIE_AGE=1800 #seconds - 30 minutes
+SESSION_SAVE_EVERY_REQUEST=True
+CSRF_COOKIE_SECURE=True
+SESSION_COOKIE_SECURE=True
+SECURE_SSL_REDIRECT=True
+SECURE_HSTS_SECONDS=3600
+SECURE_REFERRER_POLICY='no-referrer'
+SECURE_HSTS_PRELOAD=True
+SECURE_HSTS_INCLUDE_SUBDOMAINS=True
