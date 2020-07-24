@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+#selectors{
+    display: flex; 
+    flex-direction: row;
+}
+
+{% endblock style %}
+
+#submit-button{
+    float:right;
+}
+
+{% block content %}
+
+    <div class="centered column-arrangement">
+        <form action="/manage/courses/add" method="POST">
+            {% csrf_token %}
+            {{ form.name }}
+            <br>
+            <div id="selectors">
+                <span class="tag is-medium  mx-1 my-1">Capitol</span>
+                <div class="select mb-5">
+                    {{ form.chapter }}
+                </div>
+                <span class="tag is-medium ml-6 mr-1 my-1">Autor</span>
+                <div class="select mb-5">
+                    {{ form.author }}
+                </div>
+            </div>
+            {{ form.content }}
+            <input id="submit-button"  class="button is-primary is-medium mx-4 my-4" type="submit" value="Încarcă"/>
+        </form>
+    </div>
+
+{% endblock content %}
