@@ -3,7 +3,7 @@
 {% block style %}
 
 .table-cell{
-    width: 20rem;
+    width: 25rem;
 }
 
 {% endblock style %}
@@ -33,6 +33,12 @@
             <td>{{chapter.name}}</td>
             <td> <a href="/view/courses/detailed?id={{ chapter.chapter_id }}"> {{count}} </a> </td>
             <td></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td class="has-text-grey"> Nu există nici un capitol înregistrat</td>
+            <td></td>
+            <td class="has-text-info"> Apasă aici <i class="fas fa-arrow-up"></i>  </td>
         </tr>
         {% endfor %}
     </tbody>

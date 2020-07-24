@@ -28,17 +28,39 @@
     <tfoot>
     </tfoot>
     <tbody>
-        {% for item in data %}
+        {% for course in courses %}
             <tr>
                 <!--TODO SEND TO EDIT PAGE-->
-                <td> {{ item.0 }} </td>
-                <td> {{ item.1 }} </td>
-                <td> 
-                    <a href="/manage/courses/remove?id={{ item.2 }}&source_id={{ source_id }}" class="button is-danger is-small has-text-weight-bold"> Șterge </a> 
+                <td>
+                    <a href="/view/courses/edit?id={{ course.id }}">
+                        {{ course.name }}
+                    </a>
                 </td>
+                <td> {{ course.author }} </td>
+                <td>
+                    <button onclick="openConfirmationDialog('{{ course.name }}','/manage/chapters/remove?id={{ course.id }}&source_id={{ source_id }}')" class="button is-danger is-small has-text-weight-bold">Șterge</button>
+                {% comment %} </td>
+                    <a href="/manage/courses/remove?id={{ course.id }}&source_id={{ source_id }}" class="button is-danger is-small has-text-weight-bold"> Șterge </a> 
+                </td> {% endcomment %}
+            </tr>
+        {% empty %}
+            <tr>
+                <td class="has-text-grey"> Nu există nici o lecție înregistrată</td>
+                <td></td>
+                <td class="has-text-info"> Apasă aici <i class="fas fa-arrow-up"></i>  </td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
+
+<div id="confirmation-dialog" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div id="modal-content-container" class="box">
+    </div>
+  </div>
+  {% comment %} <button class="modal-close is-large" aria-label="close"></button> {% endcomment %}
+</div>
+
 
 {% endblock content %}

@@ -30,12 +30,27 @@
         {% for chapter in chapters %}
         <tr>
             <td>{{chapter.name}}</td>
-            <td> <a href="/manage/chapters/remove?id={{ chapter.chapter_id }}" class="button is-danger is-small has-text-weight-bold"> Șterge </a> </td>
+            <td>
+                <button onclick="openConfirmationDialog('{{ chapter.name }}','/manage/chapters/remove?id={{ chapter.chapter_id }}')" class="button is-danger is-small has-text-weight-bold">Șterge</button>
+            </td>
+            {% comment %} <a href="" class="button is-danger is-small has-text-weight-bold"> Șterge </a> </td> {% endcomment %}
+        </tr>
+        {% empty %}
+        <tr>
+            <td class="has-text-grey"> Nu există nici un capitol înregistrat</td>
+            <td class="has-text-info"> Apasă aici <i class="fas fa-arrow-up"></i>  </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-{% comment %} TODO buton de stergere {% endcomment %}
+<div id="confirmation-dialog" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div id="modal-content-container" class="box">
+    </div>
+  </div>
+  {% comment %} <button class="modal-close is-large" aria-label="close"></button> {% endcomment %}
+</div>
 
 {% endblock content %}
