@@ -251,7 +251,7 @@ def manage_courses_add(request):
     chapter=Chapter.objects.get(chapter_id=chapter_id)
     order_number=request.POST.get("order_number", None)
 
-    if int(order_number) != int(course.order_number) and Course.objects.filter(chapter=chapter).filter(order_number=order_number) > 0:
+    if Course.objects.filter(chapter=chapter).filter(order_number=order_number) > 0:
         context={
             "name":name,
             "author_id":author_id,
