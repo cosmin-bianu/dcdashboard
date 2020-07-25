@@ -8,12 +8,16 @@ class Chapter(models.Model):
     
     chapter_id=models.SmallAutoField(primary_key=True)
     name=models.CharField(max_length=max_name_length,default="")
+    order_number=models.PositiveSmallIntegerField(unique=true)
 
     @classmethod
     def create(cls, name):
         chapter = cls(name=name)
         chapter.save()
         return chapter
+    
+    class Meta:
+        ordering=['order_number',]
 
 
 class Exercise(models.Model):
