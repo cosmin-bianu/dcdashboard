@@ -203,9 +203,20 @@ def manage_courses_edit_view(request):
 @require_http_methods(["GET"])
 @login_required(login_url='login')
 def manage_chapters_edit_view(request):
-    #TODO
-    context={
-
+    chapter_id=request.GET.get("id",None)
+    chapter=Chapter.objects.get(pk=chapter_id)
+    name=chapter.name
+    order_number=chapter.order_number
+    description=chapter.description
+    context = {
+        "page_title": "Modifică un capitol",
+        "form":ChapterCreationForm(initial={
+            "name":request.GET.get("name",name),
+            "order_number":request.GET.get("on",order_number),
+            "description":request.GET.get("desc",description),
+        }),
+        "status":request.GET.get("status", None),
+        "id":chapter_id,
     }
     return render(request, "edit_chapter.html", context)
 
@@ -290,9 +301,18 @@ def manage_courses_edit(request):
 @require_http_methods(["POST"])
 @login_required(login_url='login')
 def manage_chapters_edit(request):
-    #TODO
+    name = request.POST.get("name", None)
+    order_number = request.POST.get("order_number",None)
+    description = request.POST.get("description",None)
+    chapter_id = request.POST.get("id",None)
+    if Chapter.objects.filter(order_number=order_number).count() > 0:
+        return redirect('/view/chapters/edit?status=1&name={}&on={}&desc={}&id={}'.format(name,order_number,description,chapter_id))
+    chapter=Chapter.objects.get(pk=chapter_id)
+    chapter.name=name
+    chapter.order_number=order_number
+    chapter.description=description
+    chapter.save()
     return redirect('view_chapters')
-
 # Remove API
     
 @require_http_methods(["GET"])

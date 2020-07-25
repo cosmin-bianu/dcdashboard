@@ -31,7 +31,11 @@
         {% for chapter in chapters %}
         <tr>
             <td>{{chapter.order_number}}</td>
-            <td>{{chapter.name}}</td>
+            <td>
+                <a href="/view/chapters/edit?id={{ chapter.chapter_id }}" class="button is-outlined is-link">
+                    {{chapter.name}}
+                </a>
+            </td>
             <td>
                 <button onclick="openConfirmationDialog('{{ chapter.name }}','/manage/chapters/remove?id={{ chapter.chapter_id }}')" class="button is-danger is-small has-text-weight-bold">Șterge</button>
             </td>
