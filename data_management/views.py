@@ -119,7 +119,7 @@ def manage_courses_detailed_view(request):
 
         for course in courses:
             processed_courses.append({
-                "name":course.name, 
+                "name":course.name,
                 "author":course.author.get_full_name(),
                 "order_number":course.order_number,
                 "id":course.course_id,
@@ -129,7 +129,7 @@ def manage_courses_detailed_view(request):
             "page_title":chapter.name,
             "breadcrumbs":breadcrumbs,
             "courses":processed_courses,
-            "source_id":source_id,
+            "chapter_id":source_id,
         }
         return render(request, "view_courses_detail.html", context)
     else:
@@ -151,7 +151,7 @@ def manage_questions_add_view(request):
 @require_http_methods(["GET"])
 @login_required(login_url='login')
 def manage_courses_add_view(request):
-    target_chapter_id=request.GET.get("source_id", None)
+    target_chapter_id=request.GET.get("chapter_id", None)
     target_chapter=Chapter.objects.get(chapter_id=target_chapter_id)
     context = {
         "page_title": "Adaugă o lecție",
@@ -251,7 +251,7 @@ def manage_courses_add(request):
     chapter=Chapter.objects.get(chapter_id=chapter_id)
     order_number=request.POST.get("order_number", None)
 
-    if Course.objects.filter(chapter=chapter).filter(order_number=order_number) > 0:
+    if Course.objects.filter(chapter=chapter).filter(order_number=order_number).count() > 0:
         context={
             "name":name,
             "author_id":author_id,
@@ -259,7 +259,7 @@ def manage_courses_add(request):
             "chapter_id":chapter_id,
             "order_number":order_number,
         }
-        return redirect('/view/courses/add?status=1&{}'.format(urlib.parse.urlencode(context)))
+        return redirect('/view/courses/add?status=1&{}'.format(urllib.parse.urlencode(context)))
     
     course=Course(
         name=name,
@@ -283,7 +283,7 @@ def manage_chapters_add(request):
             "on":order_number,
             "desc":description,
         }
-        return redirect('/view/chapters/add?status=1&{}'.format(urlib.parse.urlencode(context)))
+        return redirect('/view/chapters/add?status=1&{}'.format(urllib.parse.urlencode(context)))
     Chapter.create(
         name=name,
         order_number=order_number,
@@ -314,7 +314,7 @@ def manage_courses_edit(request):
     chapter=Chapter.objects.get(pk=chapter_id)
     order_number=request.POST.get("order_number", None)
 
-    if int(order_number) != int(course.order_number) and Course.objects.filter(chapter=chapter).filter(order_number=order_number) > 0:
+    if int(order_number) != int(course.order_number) and Course.objects.filter(chapter=chapter).filter(order_number=order_number).count() > 0:
         context={
             "name":name,
             "author_id":author_id,
@@ -323,7 +323,7 @@ def manage_courses_edit(request):
             "order_number":order_number,
             "id":course_id,
         }
-        return redirect('/view/courses/edit?status=1&{}'.format(urlib.parse.urlencode(context)))
+        return redirect('/view/courses/edit?status=1&{}'.format(urllib.parse.urlencode(context)))
 
     course.name=name
     course.author=author
@@ -348,7 +348,7 @@ def manage_chapters_edit(request):
             "desc":description,
             "id":chapter_id,
         }
-        return redirect('/view/chapters/add?status=1&{}'.format(urlib.parse.urlencode(context)))
+        return redirect('/view/chapters/add?status=1&{}'.format(urllib.parse.urlencode(context)))
     chapter.name=name
     chapter.order_number=order_number
     chapter.description=description
