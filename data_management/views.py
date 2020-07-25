@@ -196,7 +196,10 @@ def manage_courses_edit_view(request):
     name=course.name
     author=course.author
     content=course.content
-    chapter=course.chapter
+    chapter=course.chapter #Placeholder
+    custom_chapter=request.GET.get("chapter_id",None)
+    if custom_chapter is not None:
+        chapter=custom_chapter
     order_number=course.order_number
 
     context = {
@@ -205,7 +208,7 @@ def manage_courses_edit_view(request):
             'name':request.GET.get("name",name),
             'author':request.GET.get("author_id",author),
             'content':request.GET.get("content",content),
-            'chapter_id':request.GET.get("chapter_id",chapter),
+            'chapter':chapter,
             'order_number':request.GET.get("order_number",order_number),
             }),
         "status":request.GET.get("status", None),
