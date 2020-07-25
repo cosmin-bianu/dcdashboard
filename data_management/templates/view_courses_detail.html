@@ -38,7 +38,7 @@
                 </td>
                 <td> {{ course.author }} </td>
                 <td>
-                    <button onclick="openConfirmationDialog('{{ course.name }}','/manage/chapters/remove?id={{ course.id }}&source_id={{ source_id }}')" class="button is-danger is-small has-text-weight-bold">Șterge</button>
+                    <button onclick="openConfirmationDialog('{{ course.name }}','/manage/courses/remove?id={{ course.id }}&source_id={{ source_id }}')" class="button is-danger is-small has-text-weight-bold">Șterge</button>
                 {% comment %} </td>
                     <a href="/manage/courses/remove?id={{ course.id }}&source_id={{ source_id }}" class="button is-danger is-small has-text-weight-bold"> Șterge </a> 
                 </td> {% endcomment %}

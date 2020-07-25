@@ -327,7 +327,7 @@ def manage_questions_remove(request):
 def manage_courses_remove(request):
     target_id = request.GET.get("id", None)
     source_id = request.GET.get("source_id", None)
-    Course.objects.filter(course_id=target_id).delete()
+    Course.objects.filter(pk=target_id).delete()
     return redirect('/view/courses/detailed?id={}'.format(source_id))
 
 @require_http_methods(["GET"])
