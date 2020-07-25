@@ -240,7 +240,7 @@ def manage_courses_add(request):
 def manage_chapters_add(request):
     name = request.POST.get("name", None)
     order_number = request.POST.get("order_number",None)
-    if Chapter.objects.filter(order_number=order_number) > 0:
+    if Chapter.objects.filter(order_number=order_number).count() > 0:
         return redirect('/view/chapters/add?status=1')
     Chapter.create(
         name=name,
