@@ -116,7 +116,7 @@ def manage_courses_detailed_view(request):
 
         processed_courses=[]
 
-        for i,course in enumerate(courses):
+        for course in courses:
             processed_courses.append({
                 "name":course.name, 
                 "author":course.author.get_full_name(),
@@ -162,7 +162,10 @@ def manage_courses_add_view(request):
 def manage_chapters_add_view(request):
     context = {
         "page_title": "Adaugă un capitol",
-        "form":ChapterCreationForm(),
+        "form":ChapterCreationForm(initial={
+            "name":request.GET.get("name",None),
+            "order_number":request.GET.get("on",None),
+        }),
         "status":request.GET.get("status", None),
     }
     return render(request, "add_chapter.html", context)
@@ -241,7 +244,7 @@ def manage_chapters_add(request):
     name = request.POST.get("name", None)
     order_number = request.POST.get("order_number",None)
     if Chapter.objects.filter(order_number=order_number).count() > 0:
-        return redirect('/view/chapters/add?status=1')
+        return redirect('/view/chapters/add?status=1&name={}&on={}'.format(name,order_number))
     Chapter.create(
         name=name,
         order_number=order_number
