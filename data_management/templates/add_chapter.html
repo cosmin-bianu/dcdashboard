@@ -17,9 +17,9 @@
 
 <div class="column-arrangement centered">
     {% comment %} <h3 class="is-size-3 mb-6"> Adaugă un capitol </h3> {% endcomment %}
-    {% if status is 1 %}
+    {% if status == "1" %}
 
-    <div class="notification"> Există deja un capitol cu acest număr de ordine </div>
+    <div class="notification is-danger"> Există deja un capitol cu acest număr de ordine </div>
 
     {% endif %}
 
