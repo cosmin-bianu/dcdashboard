@@ -14,7 +14,7 @@ class ChapterCreationForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'input is-medium', 'placeholder':'Numele capitolului'}),
             'order_number': forms.NumberInput(attrs={'class': 'input is-medium', 'placeholder':'Numarul de ordine'}),
-            'description': forms.Textareat(attrs={'class': 'input is-medium', 'placeholder':'Descriere'}),
+            'description': forms.Textarea(attrs={'class': 'input is-medium', 'placeholder':'Descriere'}),
         }
 
 class NameModelChoiceField(forms.ModelChoiceField):
