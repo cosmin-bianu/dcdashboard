@@ -19,6 +19,8 @@
 
     <div class="notification is-danger"> Există deja un capitol cu acest număr de ordine </div>
 
+    {% endif %}	
+
     <div class="centered column-arrangement">
         <form action="/manage/courses/edit" method="POST">
             {% csrf_token %}
