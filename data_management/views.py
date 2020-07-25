@@ -165,6 +165,7 @@ def manage_chapters_add_view(request):
         "form":ChapterCreationForm(initial={
             "name":request.GET.get("name",None),
             "order_number":request.GET.get("on",None),
+            "description":request.GET.get("desc",None),
         }),
         "status":request.GET.get("status", None),
     }
@@ -203,7 +204,10 @@ def manage_courses_edit_view(request):
 @login_required(login_url='login')
 def manage_chapters_edit_view(request):
     #TODO
-    return render(request, "edit_course.html", context)
+    context={
+
+    }
+    return render(request, "edit_chapter.html", context)
 
 
 
@@ -243,11 +247,13 @@ def manage_courses_add(request):
 def manage_chapters_add(request):
     name = request.POST.get("name", None)
     order_number = request.POST.get("order_number",None)
+    description = request.POST.get("description",None)
     if Chapter.objects.filter(order_number=order_number).count() > 0:
-        return redirect('/view/chapters/add?status=1&name={}&on={}'.format(name,order_number))
+        return redirect('/view/chapters/add?status=1&name={}&on={}&desc={}'.format(name,order_number,description))
     Chapter.create(
         name=name,
-        order_number=order_number
+        order_number=order_number,
+        description=description,
     )
     return redirect('view_chapters')
 

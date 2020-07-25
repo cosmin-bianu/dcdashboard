@@ -5,16 +5,20 @@ from django.contrib.auth import get_user_model
 # Create your models here.
 class Chapter(models.Model):
     max_name_length=100 #characters
+    max_description_length=200 #characters
     
     chapter_id=models.SmallAutoField(primary_key=True)
     name=models.CharField(max_length=max_name_length,default="")
     order_number=models.PositiveSmallIntegerField(unique=True)
+    description=models.CharField(max_length=max_description_length,default="")
 
     @classmethod
-    def create(cls, name, order_number):
+    def create(cls, name, order_number,description):
         chapter = cls(
             name=name, 
-            order_number=order_number)
+            order_number=order_number,
+            description=description,
+            )
         chapter.save()
         return chapter
     
