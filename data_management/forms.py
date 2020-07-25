@@ -34,5 +34,5 @@ class CourseCreationForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Numele lecției'}),
             'content': forms.Textarea(attrs={'class': 'input is-medium mb-3', 'placeholder':'Conținut'}),
-
+            'order_number': forms.NumberInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Numărul de ordine'}),
         }

@@ -13,6 +13,7 @@
 <table class="table is-hoverable is-size-5">
     <thead>
         <tr>
+            <th>Nr.</th>
             <th class="table-cell">Numele lecției</th>
             <th class="table-cell">Autor</th>
             <th>
@@ -31,6 +32,7 @@
         {% for course in courses %}
             <tr>
                 <!--TODO SEND TO EDIT PAGE-->
+                <td> {{ course.order_number }}
                 <td>
                     <a href="/view/courses/edit?id={{ course.id }}">
                         {{ course.name }}

@@ -13,6 +13,7 @@
 <table class="table is-hoverable is-size-5">
     <thead>
         <tr>
+            <th>Nr.</th>
             <th class="table-cell">Capitole</th>
             <th class="table-cell">Nr. lecții</th>
             <th>
@@ -30,13 +31,15 @@
     <tbody>
         {% for chapter,count in chapters.items %}
         <tr>
-            <td>{{chapter.name}}</td>
+            <td>{{ chapter.order_number }}
+            <td>{{ chapter.name }}</td>
             <td> <a href="/view/courses/detailed?id={{ chapter.chapter_id }}" class="button is-outlined is-link"> {{count}} </a> </td>
             <td></td>
         </tr>
         {% empty %}
         <tr>
             <td class="has-text-grey"> Nu există nici un capitol înregistrat</td>
+            <td></td>
             <td></td>
             <td class="has-text-info"> Mergi aici <i class="fas fa-arrow-up"></i>  </td>
         </tr>

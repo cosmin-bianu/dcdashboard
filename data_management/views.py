@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from data_management.models import TwoAnswerExercise,FourAnswerExercise,Course,Chapter
 from django.views.decorators.http import require_http_methods
 import logging
+import urlib.parse
 
 
 
@@ -120,6 +121,7 @@ def manage_courses_detailed_view(request):
             processed_courses.append({
                 "name":course.name, 
                 "author":course.author.get_full_name(),
+                "order_number":course.order_number,
                 "id":course.course_id,
                 })
 
@@ -188,14 +190,17 @@ def manage_courses_edit_view(request):
     author=course.author
     content=course.content
     chapter=course.chapter
+    order_number=course.order_number
 
     context = {
         "page_title": "Modifică o lecție",
         "form":CourseCreationForm(initial={
-            'name':name,
-            'author':author,
-            'content':content,
-            'chapter':chapter}),
+            'name':request.GET.get("name",name),
+            'author':request.GET.get("author_id",author),
+            'content':request.GET.get("content",content),
+            'chapter_id':request.GET.get("chapter_id",chapter),
+            'order_number':request.GET.get("order_number",order_number),
+            }),
         'course_id':course_id
     }
     return render(request, "edit_course.html", context)
@@ -244,11 +249,24 @@ def manage_courses_add(request):
     content=request.POST.get("content", None)
     chapter_id=request.POST.get("chapter", None)
     chapter=Chapter.objects.get(chapter_id=chapter_id)
+    order_number=request.POST.get("order_number", None)
+
+    if int(order_number) != int(course.order_number) and Course.objects.filter(chapter=chapter).filter(order_number=order_number) > 0:
+        context={
+            "name":name,
+            "author_id":author_id,
+            "content":content,
+            "chapter_id":chapter_id,
+            "order_number":order_number,
+        }
+        return redirect('/view/courses/add?status=1&{}'.format(urlib.parse.urlencode(context)))
+    
     course=Course(
         name=name,
         author=author,
         content=content,
         chapter=chapter,
+        order_number=order_number,
     )
     course.save()
     return redirect('/view/courses/detailed?id={}'.format(chapter_id))
@@ -260,7 +278,12 @@ def manage_chapters_add(request):
     order_number = request.POST.get("order_number",None)
     description = request.POST.get("description",None)
     if Chapter.objects.filter(order_number=order_number).count() > 0:
-        return redirect('/view/chapters/add?status=1&name={}&on={}&desc={}'.format(name,order_number,description))
+        context={
+            "name":name,
+            "on":order_number,
+            "desc":description,
+        }
+        return redirect('/view/chapters/add?status=1&{}'.format(urlib.parse.urlencode(context)))
     Chapter.create(
         name=name,
         order_number=order_number,
@@ -288,14 +311,26 @@ def manage_courses_edit(request):
     author=User.objects.get(id=author_id)
     content=request.POST.get("content", None)
     chapter_id=request.POST.get("chapter", None)
-    chapter=Chapter.objects.get(chapter_id=chapter_id)
+    chapter=Chapter.objects.get(pk=chapter_id)
+    order_number=request.POST.get("order_number", None)
+
+    if int(order_number) != int(course.order_number) and Course.objects.filter(chapter=chapter).filter(order_number=order_number) > 0:
+        context={
+            "name":name,
+            "author_id":author_id,
+            "content":content,
+            "chapter_id":chapter_id,
+            "order_number":order_number,
+            "id":course_id,
+        }
+        return redirect('/view/courses/edit?status=1&{}'.format(urlib.parse.urlencode(context)))
 
     course.name=name
     course.author=author
     course.content=content
     course.chapter=chapter
     course.save()
-    return redirect('/view/courses/detailed?id={}'.format(chapter_id))
+    return redirect('/view/courses/detailed?id={}'.format(chapter.chapter_id))
 
 
 @require_http_methods(["POST"])
@@ -307,12 +342,20 @@ def manage_chapters_edit(request):
     chapter_id = request.POST.get("id",None)
     chapter=Chapter.objects.get(pk=chapter_id)
     if int(order_number) != int(chapter.order_number) and Chapter.objects.filter(order_number=order_number).count() > 0:
-    	return redirect('/view/chapters/edit?status=1&name={}&on={}&desc={}&id={}'.format(name,order_number,description,chapter_id))
+        context={
+            "name":name,
+            "on":order_number,
+            "desc":description,
+            "id":chapter_id,
+        }
+        return redirect('/view/chapters/add?status=1&{}'.format(urlib.parse.urlencode(context)))
     chapter.name=name
     chapter.order_number=order_number
     chapter.description=description
     chapter.save()
     return redirect('view_chapters')
+
+
 # Remove API
     
 @require_http_methods(["GET"])
