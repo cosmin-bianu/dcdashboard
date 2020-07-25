@@ -13,7 +13,6 @@
 <table class="table is-hoverable is-size-5">
     <thead>
         <tr>
-            <th>Nr.</th>
             <th class="table-cell">Capitole</th>
             <th>
                 <a href="/view/chapters/add" class="button is-rounded is-primary">
@@ -30,16 +29,15 @@
     <tbody>
         {% for chapter in chapters %}
         <tr>
-            <td>{{chapter.order_number}}</td>
             <td>{{chapter.name}}</td>
             <td>
                 <button onclick="openConfirmationDialog('{{ chapter.name }}','/manage/chapters/remove?id={{ chapter.chapter_id }}')" class="button is-danger is-small has-text-weight-bold">Șterge</button>
             </td>
+            {% comment %} <a href="" class="button is-danger is-small has-text-weight-bold"> Șterge </a> </td> {% endcomment %}
         </tr>
         {% empty %}
         <tr>
             <td class="has-text-grey"> Nu există nici un capitol înregistrat</td>
-            <td></td>
             <td class="has-text-info"> Apasă aici <i class="fas fa-arrow-up"></i>  </td>
         </tr>
         {% endfor %}

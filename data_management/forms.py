@@ -10,10 +10,9 @@ class LoginForm(forms.Form):
 class ChapterCreationForm(forms.ModelForm):
     class Meta:
         model = Chapter
-        fields = ["name","order_number"]
+        fields = ["name",]
         widgets = {
             'name': forms.TextInput(attrs={'class': 'input is-medium', 'placeholder':'Numele capitolului'}),
-            'order_number': forms.NumberInput(attrs={'class': 'input is-medium', 'placeholder':'Numarul de ordine'}),
         }
 
 class NameModelChoiceField(forms.ModelChoiceField):
