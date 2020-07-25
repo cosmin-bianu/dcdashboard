@@ -335,6 +335,7 @@ def manage_courses_edit(request):
     course.author=author
     course.content=content
     course.chapter=chapter
+    course.order_number=order_number
     course.save()
     return redirect('/view/courses/detailed?id={}'.format(chapter.chapter_id))
 
