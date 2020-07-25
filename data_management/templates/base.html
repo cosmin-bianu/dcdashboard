@@ -4,6 +4,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> Drept Civil Dashboard </title>
         <link rel="stylesheet" href="{% static "bulma.css" %}" type="text/css">
         <script src="{% static "script.js"%}"></script>
@@ -37,6 +38,15 @@
                 margin-bottom: 1rem;
             }
 
+            .navbar-brand{
+                display:inline-flex;
+            }
+
+            .navbar-end{
+                display:inline-block;
+                float:right;
+            }
+
             {% block style %}
 
             {% endblock style %}
@@ -45,7 +55,7 @@
     <body>
         {% include 'nav.html'%}
 
-        <div id="main-container" class="centered">
+        <div id="main-container" class="centered mt-6">
             {% if disable_column is None %}
             <div class="column-arrangement">
             {% endif %}
