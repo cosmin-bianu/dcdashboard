@@ -14,6 +14,10 @@
 }
 
 {% block content %}
+    {% comment %} <h3 class="is-size-3 mb-6"> Adaugă un capitol </h3> {% endcomment %}
+    {% if status == "1" %}
+
+    <div class="notification is-danger"> Există deja un capitol cu acest număr de ordine </div>
 
     <div class="centered column-arrangement">
         <form action="/manage/courses/edit" method="POST">
