@@ -104,9 +104,9 @@ def manage_courses_general_view(request):
 @require_http_methods(["GET"])
 @login_required(login_url='login')
 def manage_courses_detailed_view(request):
-    source_id = request.GET.get("id", None)
-    if source_id is not None:
-        chapter=Chapter.objects.get(chapter_id=source_id)
+    source_chapter_id = request.GET.get("id", None)
+    if source_chapter_id is not None:
+        chapter=Chapter.objects.get(chapter_id=source_chapter_id)
         courses=Course.objects.filter(chapter__chapter_id=chapter.chapter_id)
         
         breadcrumbs = [
@@ -129,7 +129,7 @@ def manage_courses_detailed_view(request):
             "page_title":chapter.name,
             "breadcrumbs":breadcrumbs,
             "courses":processed_courses,
-            "chapter_id":source_id,
+            "source_chapter_id":source_chapter_id,
         }
         return render(request, "view_courses_detail.html", context)
     else:
@@ -162,6 +162,7 @@ def manage_courses_add_view(request):
             'chapter_id':request.GET.get("chapter_id",target_chapter),
             'order_number':request.GET.get("order_number",None),
         }),
+        "status":request.GET.get("status", None),
     }
     return render(request, "add_course.html", context)
 
@@ -207,6 +208,7 @@ def manage_courses_edit_view(request):
             'chapter_id':request.GET.get("chapter_id",chapter),
             'order_number':request.GET.get("order_number",order_number),
             }),
+        "status":request.GET.get("status", None),
         'course_id':course_id
     }
     return render(request, "edit_course.html", context)
@@ -376,9 +378,9 @@ def manage_questions_remove(request):
 @login_required(login_url='login')
 def manage_courses_remove(request):
     target_id = request.GET.get("id", None)
-    source_id = request.GET.get("source_id", None)
+    source_chapter_id = request.GET.get("source_chapter_id", None)
     Course.objects.filter(pk=target_id).delete()
-    return redirect('/view/courses/detailed?id={}'.format(source_id))
+    return redirect('/view/courses/detailed?id={}'.format(source_chapter_id))
 
 @require_http_methods(["GET"])
 @login_required(login_url='login')
