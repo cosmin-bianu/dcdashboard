@@ -306,9 +306,8 @@ def manage_chapters_edit(request):
     description = request.POST.get("description",None)
     chapter_id = request.POST.get("id",None)
     chapter=Chapter.objects.get(pk=chapter_id)
-    if order_number != chapter.order_number:
-        if Chapter.objects.filter(order_number=order_number).count() > 0:
-            return redirect('/view/chapters/edit?status=1&name={}&on={}&desc={}&id={}'.format(name,order_number,description,chapter_id))
+    if int(order_number) != int(chapter.order_number) and Chapter.objects.filter(order_number=order_number).count() > 0:
+    	return redirect('/view/chapters/edit?status=1&name={}&on={}&desc={}&id={}'.format(name,order_number,description,chapter_id))
     chapter.name=name
     chapter.order_number=order_number
     chapter.description=description
