@@ -236,8 +236,11 @@ def manage_courses_add(request):
 @login_required(login_url='login')
 def manage_chapters_add(request):
     name = request.POST.get("name", None)
-    logger.info("POST request: name is {}".format(name))
-    Chapter.create(name)
+    order_number = request.POST.get("order_number",None)
+    Chapter.create(
+        name=name,
+        order_number=order_number
+    )
     return redirect('view_chapters')
 
 
