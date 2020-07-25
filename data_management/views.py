@@ -139,9 +139,11 @@ def manage_courses_detailed_view(request):
 @require_http_methods(["GET"])
 @login_required(login_url='login')
 def manage_questions_add_view(request):
+
     context = {
-        "page_title": "Adaugă un capitol",
+        "page_title": "Adaugă o întrebare",
     }
+            
     return render(request, "add_question.html", context)
 
 @require_http_methods(["GET"])
@@ -161,6 +163,7 @@ def manage_chapters_add_view(request):
     context = {
         "page_title": "Adaugă un capitol",
         "form":ChapterCreationForm(),
+        "status":request.GET.get("status", None),
     }
     return render(request, "add_chapter.html", context)
 
@@ -237,6 +240,8 @@ def manage_courses_add(request):
 def manage_chapters_add(request):
     name = request.POST.get("name", None)
     order_number = request.POST.get("order_number",None)
+    if Chapter.objects.filter(order_number=order_number) > 0:
+        return redirect('/view/chapters/add?status=1')
     Chapter.create(
         name=name,
         order_number=order_number
