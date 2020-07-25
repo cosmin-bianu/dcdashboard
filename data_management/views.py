@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from data_management.models import TwoAnswerExercise,FourAnswerExercise,Course,Chapter
 from django.views.decorators.http import require_http_methods
 import logging
-import urlib.parse
+import urllib.parse
 
 
 
