@@ -11,8 +11,10 @@ class Chapter(models.Model):
     order_number=models.PositiveSmallIntegerField(unique=True)
 
     @classmethod
-    def create(cls, name):
-        chapter = cls(name=name)
+    def create(cls, name, order_number):
+        chapter = cls(
+            name=name, 
+            order_number=order_number)
         chapter.save()
         return chapter
     
