@@ -7,3 +7,9 @@ older.db.sqlite3
 drept_civil_dashboard/wsgi.py
 drept_civil_dashboard/settings.py
 .vscode
+.idea/.gitignore
+.idea/drept_civil_dashboard.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
