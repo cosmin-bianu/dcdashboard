@@ -151,7 +151,7 @@ def manage_questions_add_view(request):
 @require_http_methods(["GET"])
 @login_required(login_url='login')
 def manage_courses_add_view(request):
-    target_chapter_id=request.GET.get("chapter_id", None)
+    target_chapter_id=request.GET.get("source_chapter_id", None)
     target_chapter=Chapter.objects.get(chapter_id=target_chapter_id)
     context = {
         "page_title": "Adaugă o lecție",
