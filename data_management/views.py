@@ -152,14 +152,13 @@ def manage_questions_add_view(request):
 @login_required(login_url='login')
 def manage_courses_add_view(request):
     target_chapter_id=request.GET.get("source_chapter_id", None)
-    target_chapter=Chapter.objects.get(chapter_id=target_chapter_id)
     context = {
         "page_title": "Adaugă o lecție",
         "form":CourseCreationForm(initial={
             'name':request.GET.get("name",None),
             'author':request.GET.get("author_id",request.user),
             'content':request.GET.get("content",None),
-            'chapter_id':request.GET.get("chapter_id",target_chapter),
+            'chapter_id':request.GET.get("chapter_id",target_chapter_id),
             'order_number':request.GET.get("order_number",None),
         }),
         "status":request.GET.get("status", None),
