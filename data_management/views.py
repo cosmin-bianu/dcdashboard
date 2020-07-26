@@ -158,7 +158,7 @@ def manage_courses_add_view(request):
             'name':request.GET.get("name",None),
             'author':request.GET.get("author_id",request.user),
             'content':request.GET.get("content",None),
-            'chapter_id':request.GET.get("chapter_id",target_chapter_id),
+            'chapter':request.GET.get("chapter_id",target_chapter_id),
             'order_number':request.GET.get("order_number",None),
         }),
         "status":request.GET.get("status", None),
