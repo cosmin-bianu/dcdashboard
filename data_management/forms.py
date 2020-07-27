@@ -51,5 +51,5 @@ class ExerciseCreationForm(forms.ModelForm):
             'answer2': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Opțiunea 2'}),
             'answer3': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Opțiunea 3'}),
             'answer4': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Opțiunea 4'}),
-            'correct_answer_index': forms.Select(attrs={'class': 'is-medium mb-3'},choices=FourAnswerExercise.correct_answer_index.choices)
+            'correct_answer_index': forms.Select(attrs={'class': 'is-medium mb-3'})
         }
