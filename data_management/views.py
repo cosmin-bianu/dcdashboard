@@ -360,7 +360,7 @@ def manage_chapters_edit(request):
             "desc":description,
             "id":chapter_id,
         }
-        return redirect('/view/chapters/add?status=1&{}'.format(urllib.parse.urlencode(context)))
+        return redirect('/view/chapters/edit?status=1&{}'.format(urllib.parse.urlencode(context)))
     chapter.name=name
     chapter.order_number=order_number
     chapter.description=description
