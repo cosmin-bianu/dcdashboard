@@ -42,7 +42,7 @@ class ExerciseCreationForm(forms.ModelForm):
     author=FullNameModelChoiceField(queryset=User.objects.all())
     class Meta:
         model = FourAnswerExercise
-        fields = ('question','chapter','author','answer1','answer2','answer3','answer4','correct_answer_index')
+        fields = ('question','chapter','author','answer1','answer2','answer3','answer4','correct_answer_index','order_number')
 
         widgets = {
             'question': forms.Textarea(attrs={'class': 'input is-medium mb-3', 'placeholder':'Întrebarea'}),
