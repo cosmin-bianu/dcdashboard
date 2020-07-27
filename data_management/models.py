@@ -38,17 +38,6 @@ class Exercise(models.Model):
     order_number=models.SmallIntegerField()
     answer_count=models.SmallIntegerField()
 
-
-class TwoAnswerExercise(Exercise):
-    max_answer_length=100 #characters
-    answer1=models.CharField(max_length=max_answer_length)
-    answer2=models.CharField(max_length=max_answer_length)
-    
-    correct_answer_index=models.PositiveSmallIntegerField(choices=(
-        (1,"1"),
-        (2,"2"),
-    ))
-
 class FourAnswerExercise(Exercise):
     max_answer_length=100 #characters
     answer1=models.CharField(max_length=max_answer_length, null=True, blank=True)
