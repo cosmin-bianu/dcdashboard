@@ -23,8 +23,12 @@
 
     <div class="notification is-danger"> Răspunsul corect nu poate fi gol. </div>
 
+    {% elif status == "3" %}
+
+    <div class="notification is-danger"> Numărul de ordine nu poate fi mai mare de 32767 </div>
+
     {% endif %}
-    
+
     <div class="centered column-arrangement">
         <form action="/manage/questions/add" method="POST">
             {% csrf_token %}

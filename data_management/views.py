@@ -14,6 +14,7 @@ import urllib.parse
 
 # Create your views here.
 logger = logging.getLogger(__name__)
+MAX_ORDER_NUMBER = 32767
 
 @require_http_methods(["GET"])
 def login_view(request):
@@ -335,6 +336,9 @@ def manage_chapters_edit_view(request):
 
 ################################## API #########################################
 
+#Max order number: 
+
+
 
 # Add API
 
@@ -391,6 +395,20 @@ def manage_questions_add(request):
         }
         return redirect('/view/questions/add?status=2&{}'.format(urllib.parse.urlencode(context)))
 
+    if int(order_number) > MAX_ORDER_NUMBER:
+        context={
+            "question":question,
+            "chapter_id":chapter_id,
+            "author_id":author_id,
+            "order_number":order_number,
+            "answer1":answer1,
+            "answer2":answer2,
+            "answer3":answer3,
+            "answer4":answer4,
+            "correct_answer_index":correct_answer_index,
+        }
+        return redirect('/view/questions/add?status=3&{}'.format(urllib.parse.urlencode(context)))
+
 
     answer_count=0
     if answer1:
@@ -439,6 +457,16 @@ def manage_courses_add(request):
         }
         return redirect('/view/courses/add?status=1&{}'.format(urllib.parse.urlencode(context)))
     
+    if int(order_number) > MAX_ORDER_NUMBER:
+        context={
+            "name":name,
+            "author_id":author_id,
+            "content":content,
+            "chapter_id":chapter_id,
+            "order_number":order_number,
+        }
+        return redirect('/view/courses/add?status=3&{}'.format(urllib.parse.urlencode(context)))
+
     course=Course(
         name=name,
         author=author,
@@ -462,6 +490,16 @@ def manage_chapters_add(request):
             "desc":description,
         }
         return redirect('/view/chapters/add?status=1&{}'.format(urllib.parse.urlencode(context)))
+
+    
+    if int(order_number) > MAX_ORDER_NUMBER:
+        context={
+            "name":name,
+            "on":order_number,
+            "desc":description,
+        }
+        return redirect('/view/chapters/add?status=3&{}'.format(urllib.parse.urlencode(context)))
+    
     Chapter.create(
         name=name,
         order_number=order_number,
@@ -537,6 +575,20 @@ def manage_questions_edit(request):
             "correct_answer_index":correct_answer_index,
         }
         return redirect('/view/questions/edit?status=2&{}'.format(urllib.parse.urlencode(context)))
+    
+    if int(order_number) > MAX_ORDER_NUMBER:
+        context={
+            "question":question,
+            "chapter_id":chapter_id,
+            "author_id":author_id,
+            "order_number":order_number,
+            "answer1":answer1,
+            "answer2":answer2,
+            "answer3":answer3,
+            "answer4":answer4,
+            "correct_answer_index":correct_answer_index,
+        }
+        return redirect('/view/questions/edit?status=3&{}'.format(urllib.parse.urlencode(context)))
 
     answer_count=0
     if answer1:
@@ -579,6 +631,18 @@ def manage_courses_edit(request):
         }
         return redirect('/view/courses/edit?status=1&{}'.format(urllib.parse.urlencode(context)))
 
+        
+    if int(order_number) > MAX_ORDER_NUMBER:
+        context={
+            "name":name,
+            "author_id":author_id,
+            "content":content,
+            "chapter_id":chapter_id,
+            "order_number":order_number,
+            "id":course_id,
+        }
+        return redirect('/view/courses/edit?status=3&{}'.format(urllib.parse.urlencode(context)))
+
     course.name=name
     course.author=author
     course.content=content
@@ -604,6 +668,16 @@ def manage_chapters_edit(request):
             "id":chapter_id,
         }
         return redirect('/view/chapters/edit?status=1&{}'.format(urllib.parse.urlencode(context)))
+        
+    if int(order_number) > MAX_ORDER_NUMBER:
+        context={
+            "name":name,
+            "on":order_number,
+            "desc":description,
+            "id":chapter_id,
+        }
+        return redirect('/view/chapters/edit?status=3&{}'.format(urllib.parse.urlencode(context)))
+    
     chapter.name=name
     chapter.order_number=order_number
     chapter.description=description

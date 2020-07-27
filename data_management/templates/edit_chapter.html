@@ -20,6 +20,10 @@
 
     <div class="notification is-danger"> Există deja un capitol cu acest număr de ordine</div>
 
+    {% elif status == "3" %}
+
+    <div class="notification is-danger"> Numărul de ordine nu poate fi mai mare de 32767 </div>
+
     {% endif %}
 
     <form action="/manage/chapters/edit" method="POST">
