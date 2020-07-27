@@ -25,6 +25,7 @@ urlpatterns = [
     path('view/courses/general', views.manage_courses_general_view, name='view_courses_general'),
     path('view/courses/detailed', views.manage_courses_detailed_view, name='view_courses_detailed'),
     path('view/questions/general', views.manage_questions_view_general, name='view_questions_general'),
+    path('view/questions/detailed', views.manage_questions_view_detailed, name='view_questions_detailed'),
     path('view/chapters', views.manage_chapters_view, name='view_chapters'),
     path('view/courses/add', views.manage_courses_add_view, name='add_courses'),
     path('view/questions/add', views.manage_questions_add_view, name='add_questions'),
