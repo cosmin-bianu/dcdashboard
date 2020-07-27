@@ -48,10 +48,10 @@ class TwoAnswerExercise(Exercise):
 
 class FourAnswerExercise(Exercise):
     max_answer_length=100 #characters
-    answer1=models.CharField(max_length=max_answer_length, required=False)
-    answer2=models.CharField(max_length=max_answer_length, required=False)
-    answer3=models.CharField(max_length=max_answer_length, required=False)
-    answer4=models.CharField(max_length=max_answer_length, required=False)
+    answer1=models.CharField(max_length=max_answer_length, null=True, blank=True)
+    answer2=models.CharField(max_length=max_answer_length, null=True, blank=True)
+    answer3=models.CharField(max_length=max_answer_length, null=True, blank=True)
+    answer4=models.CharField(max_length=max_answer_length, null=True, blank=True)
     
     correct_answer_index=models.PositiveSmallIntegerField(choices=(
         (1,"1"),
