@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block style %}
+
+.table-cell{
+    width: 20rem;
+}
+
+{% endblock style %}
+
+{% block content %}
+
+<table class="table is-hoverable is-size-5">
+    <thead>
+        <tr>
+            <th>Nr.</th>
+            <th class="table-cell">Numele întrebării</th>
+            <th class="table-cell">Autor</th>
+            <th>
+                <a href="/view/questions/add?source_chapter_id={{ source_chapter_id }}" class="button is-rounded is-primary">
+                    <span class="icon">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                    <span>Adaugă o întrebare</span>
+                </a>
+            </th>
+        </tr>
+    </thead>  
+    <tfoot>
+    </tfoot>
+    <tbody>
+        {% for question in questions %}
+            <tr>
+                <!--TODO SEND TO EDIT PAGE-->
+                <td> {{ question.order_number }}
+                <td>
+                    <a href="/view/questions/edit?id={{ question.id }}">
+                        {{ question.name }}
+                    </a>
+                </td>
+                <td> {{ question.author }} </td>
+                <td>
+                    <button onclick="openConfirmationDialog('{{ question.name }}','/manage/questions/remove?id={{ question.id }}&source_chapter_id={{ source_chapter_id }}')" class="button is-danger is-small has-text-weight-bold">Șterge</button>
+                {% comment %} </td>
+                    <a href="/manage/courses/remove?id={{ course.id }}&source_id={{ chapter_id }}" class="button is-danger is-small has-text-weight-bold"> Șterge </a> 
+                </td> {% endcomment %}
+            </tr>
+        {% empty %}
+            <tr>
+                <td></td>
+                <td class="has-text-grey"> Nu există nici o întrebare înregistrată</td>
+                <td></td>
+                <td class="has-text-info"> Apasă aici <i class="fas fa-arrow-up"></i>  </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div id="confirmation-dialog" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div id="modal-content-container" class="box">
+    </div>
+  </div>
+  {% comment %} <button class="modal-close is-large" aria-label="close"></button> {% endcomment %}
+</div>
+
+
+{% endblock content %}

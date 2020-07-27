@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block style %}
+
+.table-cell{
+    width: 25rem;
+}
+
+{% endblock style %}
+
+{% block content %}
+
+<table class="table is-hoverable is-size-5">
+    <thead>
+        <tr>
+            <th>Nr.</th>
+            <th class="table-cell">Capitole</th>
+            <th class="table-cell">Nr. întrebări</th>
+            <th>
+                <a href="/view/chapters" class="button is-rounded is-link">
+                    <span class="icon">
+                        <i class="fas fa-book-open"></i>
+                    </span>
+                    <span>Vezi capitolele</span>
+                </a>
+            </th>
+        </tr>
+    </thead>  
+    <tfoot>
+    </tfoot>
+    <tbody>
+        {% for chapter,count in chapters.items %}
+        <tr>
+            <td>{{ chapter.order_number }}
+            <td>{{ chapter.name }}</td>
+            <td> <a href="/view/questions/detailed?id={{ chapter.chapter_id }}" class="button is-outlined is-link"> {{count}} </a> </td>
+            <td></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td></td>
+            <td class="has-text-grey"> Nu există nici un capitol înregistrat</td>
+            <td></td>
+            <td class="has-text-info"> Mergi aici <i class="fas fa-arrow-up"></i>  </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% comment %} TODO buton de stergere {% endcomment %}
+
+{% endblock content %}

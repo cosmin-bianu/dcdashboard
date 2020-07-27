@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
-from data_management.models import TwoAnswerExercise,FourAnswerExercise,Course,Chapter
+from data_management.models import FourAnswerExercise,Course,Chapter
 from django.views.decorators.http import require_http_methods
 import logging
 import urllib.parse
@@ -54,7 +54,7 @@ def logout_redirect_view(request):
 def dashboard_view(request):
     context = {
         "chapters_count": Chapter.objects.count(), 
-        "question_count":  TwoAnswerExercise.objects.count() + FourAnswerExercise.objects.count(),
+        "question_count":  FourAnswerExercise.objects.count(),
         "course_count": Course.objects.count(),
         'disable_column':True,
     }
@@ -65,8 +65,59 @@ def dashboard_view(request):
 
 @require_http_methods(["GET"])
 @login_required(login_url='login')
-def manage_questions_view(request):
-    return redirect('login')
+def manage_questions_view_general(request):
+    chapters={}
+    for chapter in Chapter.objects.all():
+        count=FourAnswerExercise.objects.filter(chapter__chapter_id=chapter.chapter_id).count()
+        chapters[chapter]=count
+        
+    breadcrumbs = [
+        {"name":"Pagina principală", "link":"/"},
+        {"name":"Întrebări", "link":"#", "current_page":True}
+    ]
+    context = {
+        "page_title": "Întrebări",
+        "breadcrumbs":breadcrumbs,
+        "chapters":chapters,
+    }
+    return render(request, "view_questions_general.html", context)
+
+
+@require_http_methods(["GET"])
+@login_required(login_url='login')
+def manage_questions_detailed_view(request):
+    source_chapter_id = request.GET.get("id", None)
+    if source_chapter_id is not None:
+        chapter=Chapter.objects.get(chapter_id=source_chapter_id)
+        questions=FourAnswerExercise.objects.filter(chapter__chapter_id=chapter.chapter_id)
+        
+        breadcrumbs = [
+            {"name":"Pagina principală", "link":"/"},
+            {"name":"Întrebări", "link":"/view/questions/general"},
+            {"name":chapter.name, "link":"#", "current_page":True},
+        ]
+
+        processed_questions=[]
+
+        for question in questions:
+            processed_questions.append({
+                "name":question.name,
+                "author":question.author.get_full_name(),
+                "order_number":question.order_number,
+                "id":question.question_id,
+                })
+
+        context={
+            "page_title":chapter.name,
+            "breadcrumbs":breadcrumbs,
+            "questions":processed_questions,
+            "source_chapter_id":source_chapter_id,
+        }
+        return render(request, "view_questions_detail.html", context)
+    else:
+        return redirect('dashboard')
+
+
 
 @require_http_methods(["GET"])
 @login_required(login_url='login')
