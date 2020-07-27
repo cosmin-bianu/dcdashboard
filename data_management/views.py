@@ -372,6 +372,25 @@ def manage_questions_add(request):
     answer2=answer2.strip()
     answer3=answer3.strip()
     answer4=answer4.strip()
+    
+    if str(correct_answer_index) == "1" and not answer1 \
+        or str(correct_answer_index) == "2" and not answer2 \
+        or str(correct_answer_index) == "3" and not answer3 \
+        or str(correct_answer_index) == "4" and not answer4:
+
+        context={
+            "question":question,
+            "chapter_id":chapter_id,
+            "author_id":author_id,
+            "order_number":order_number,
+            "answer1":answer1,
+            "answer2":answer2,
+            "answer3":answer3,
+            "answer4":answer4,
+            "correct_answer_index":correct_answer_index,
+        }
+        return redirect('/view/questions/add?status=2&{}'.format(urllib.parse.urlencode(context)))
+
 
     answer_count=0
     if answer1:
@@ -500,6 +519,24 @@ def manage_questions_edit(request):
     answer2=answer2.strip()
     answer3=answer3.strip()
     answer4=answer4.strip()
+    
+    if str(correct_answer_index) == "1" and not answer1 \
+        or str(correct_answer_index) == "2" and not answer2 \
+        or str(correct_answer_index) == "3" and not answer3 \
+        or str(correct_answer_index) == "4" and not answer4:
+
+        context={
+            "question":question,
+            "chapter_id":chapter_id,
+            "author_id":author_id,
+            "order_number":order_number,
+            "answer1":answer1,
+            "answer2":answer2,
+            "answer3":answer3,
+            "answer4":answer4,
+            "correct_answer_index":correct_answer_index,
+        }
+        return redirect('/view/questions/add?status=2&{}'.format(urllib.parse.urlencode(context)))
 
     answer_count=0
     if answer1:
