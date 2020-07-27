@@ -85,7 +85,7 @@ def manage_questions_view_general(request):
 
 @require_http_methods(["GET"])
 @login_required(login_url='login')
-def manage_questions_detailed_view(request):
+def manage_questions_view_detailed(request):
     source_chapter_id = request.GET.get("id", None)
     if source_chapter_id is not None:
         chapter=Chapter.objects.get(chapter_id=source_chapter_id)
