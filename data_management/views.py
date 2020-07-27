@@ -248,7 +248,7 @@ def manage_chapters_add_view(request):
 @login_required(login_url='login')
 def manage_questions_edit_view(request):
     question_id=request.GET.get("id", None)
-    question_obj=FourAnswerQuestion.objects.get(question_id=question_id)
+    question_obj=FourAnswerExercise.objects.get(question_id=question_id)
     question=question_obj.question
     chapter=question_obj.chapter
     author=question_obj.author
@@ -441,7 +441,7 @@ def manage_chapters_add(request):
 @login_required(login_url='login')
 def manage_questions_edit(request):
     question_id=request.POST.get("question_id", None)
-    question_obj=FourAnswerQuestion.objects.get(pk=question_id)
+    question_obj=FourAnswerExercise.objects.get(pk=question_id)
     question=request.POST.get("question", None)
     chapter_id=request.POST.get("chapter", None)
     chapter=Chapter.objects.get(chapter_id=chapter_id)
@@ -455,7 +455,7 @@ def manage_questions_edit(request):
     correct_answer_index=request.POST.get("correct_answer_index", None)
 
     if (int(order_number) != int(question_obj.order_number) or int(question_obj.chapter.chapter_id) != int(chapter_id)) \
-        and FourAnswerQuestion.objects.filter(chapter=chapter).filter(order_number=order_number).count() > 0:
+        and FourAnswerExercise.objects.filter(chapter=chapter).filter(order_number=order_number).count() > 0:
         context={
             "question":question,
             "chapter_id":chapter_id,
