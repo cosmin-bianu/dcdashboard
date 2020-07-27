@@ -18,8 +18,12 @@
     {% if status == "1" %}
 
     <div class="notification is-danger"> Există deja o întrebare cu acest număr de ordine în acel capitol. </div>
+    
+    {% elif status == "2" %}
 
-    {% endif %}	
+    <div class="notification is-danger"> Răspunsul corect nu poate fi gol. </div>
+
+    {% endif %}
 
     <div class="centered column-arrangement">
         <form action="/manage/questions/edit" method="POST">
