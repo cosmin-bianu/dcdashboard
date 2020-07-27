@@ -484,7 +484,7 @@ def manage_questions_edit(request):
             "correct_answer_index":correct_answer_index,
             "id":question_id,
         }
-        return redirect('/view/courses/edit?status=1&{}'.format(urllib.parse.urlencode(context)))
+        return redirect('/view/questions/edit?status=1&{}'.format(urllib.parse.urlencode(context)))
 
     question_obj.question=question
     question_obj.chapter=chapter
