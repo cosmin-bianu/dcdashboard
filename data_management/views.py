@@ -368,6 +368,10 @@ def manage_questions_add(request):
         }
         return redirect('/view/questions/add?status=1&{}'.format(urllib.parse.urlencode(context)))
 
+    answer1=answer1.strip()
+    answer2=answer2.strip()
+    answer3=answer3.strip()
+    answer4=answer4.strip()
 
     answer_count=0
     if answer1:
@@ -491,6 +495,11 @@ def manage_questions_edit(request):
     question_obj.answer3=answer3
     question_obj.answer4=answer4
     question_obj.correct_answer_index=correct_answer_index
+
+    answer1=answer1.strip()
+    answer2=answer2.strip()
+    answer3=answer3.strip()
+    answer4=answer4.strip()
 
     answer_count=0
     if answer1:
