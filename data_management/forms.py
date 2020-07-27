@@ -13,7 +13,7 @@ class ChapterCreationForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'name': forms.TextInput(attrs={'class': 'input is-medium', 'placeholder':'Numele capitolului'}),
-            'order_number': forms.NumberInput(attrs={'class': 'input is-medium', 'placeholder':'Numarul de ordine', 'max':'32767 '}),
+            'order_number': forms.NumberInput(attrs={'class': 'input is-medium', 'placeholder':'Numărul de ordine', 'max':'32767 '}),
             'description': forms.Textarea(attrs={'class': 'input is-medium', 'placeholder':'Descriere'}),
         }
 
@@ -46,8 +46,8 @@ class ExerciseCreationForm(forms.ModelForm):
 
         widgets = {
             'question': forms.Textarea(attrs={'class': 'input is-medium mb-3', 'placeholder':'Întrebarea'}),
-            'order_number': forms.NumberInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Numărul de ordine'}),
-            'answer1': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Opțiunea 1', 'max':'32767 '}),
+            'order_number': forms.NumberInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Numărul de ordine', 'max':'32767 '}),
+            'answer1': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Opțiunea 1'}),
             'answer2': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Opțiunea 2'}),
             'answer3': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Opțiunea 3'}),
             'answer4': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Opțiunea 4'}),
