@@ -21,7 +21,18 @@
                 width:100vw;
                 margin:auto;
                 padding:0;
+                position: relative;
             }            
+
+            #background{             
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                z-index: -1;
+                overflow: hidden;
+            }
 
             .column-arrangement{
                 display: flex;
@@ -56,6 +67,13 @@
         {% include 'nav.html'%}
 
         <div id="main-container" class="centered mt-6">
+            <div id="background">
+            
+            {% block background %}
+            {% endblock background %}
+
+
+            </div>
             {% if disable_column is None %}
             <div class="column-arrangement">
             {% endif %}
