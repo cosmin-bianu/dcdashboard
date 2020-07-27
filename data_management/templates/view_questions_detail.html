@@ -36,13 +36,13 @@
                 <td> {{ question.order_number }}
                 <td>
                     <a href="/view/questions/edit?id={{ question.id }}">
-                        {{ question.name }}
+                        {{ question.question }}
                     </a>
                 </td>
                 <td> {{ question.answer_count }} </td>
                 <td> {{ question.author }} </td>
                 <td>
-                    <button onclick="openConfirmationDialog('{{ question.name }}','/manage/questions/remove?id={{ question.id }}&source_chapter_id={{ source_chapter_id }}')" class="button is-danger is-small has-text-weight-bold">Șterge</button>
+                    <button onclick="openConfirmationDialog('întrebarea nr. {{ question.order_number }}','/manage/questions/remove?id={{ question.id }}&source_chapter_id={{ source_chapter_id }}')" class="button is-danger is-small has-text-weight-bold">Șterge</button>
                 </td>
                 {% comment %} </td>
                     <a href="/manage/courses/remove?id={{ course.id }}&source_id={{ chapter_id }}" class="button is-danger is-small has-text-weight-bold"> Șterge </a> 

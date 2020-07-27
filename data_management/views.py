@@ -101,7 +101,7 @@ def manage_questions_view_detailed(request):
 
         for question in questions:
             processed_questions.append({
-                "name":question.name,
+                "question":question.question,
                 "author":question.author.get_full_name(),
                 "answer_count":question.answer_count,
                 "order_number":question.order_number,
