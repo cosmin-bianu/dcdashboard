@@ -248,7 +248,7 @@ def manage_chapters_add_view(request):
 @login_required(login_url='login')
 def manage_questions_edit_view(request):
     question_id=request.GET.get("id", None)
-    question_obj=FourAnswerExercise.objects.get(question_id=question_id)
+    question_obj=FourAnswerExercise.objects.get(pk=question_id)
     question=question_obj.question
     chapter=question_obj.chapter
     author=question_obj.author
@@ -264,7 +264,7 @@ def manage_questions_edit_view(request):
 
     context = {
         "page_title": "Modifică o întrebare",
-        "form":CourseCreationForm(initial={
+        "form":ExerciseCreationForm(initial={
             'question':request.GET.get("question",question),
             'author':request.GET.get("author_id",author),
             'correct_answer_index':request.GET.get("correct_answer_index",correct_answer_index),
