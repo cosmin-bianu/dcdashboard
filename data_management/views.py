@@ -368,6 +368,17 @@ def manage_questions_add(request):
         }
         return redirect('/view/questions/add?status=1&{}'.format(urllib.parse.urlencode(context)))
 
+
+    answer_count=0
+    if answer1:
+        answer_count += 1
+    if answer2:
+        answer_count += 1
+    if answer3:
+        answer_count += 1
+    if answer4:
+        answer_count += 1
+    
     question_obj=FourAnswerExercise(
         question=question,
         chapter=chapter,
@@ -377,7 +388,8 @@ def manage_questions_add(request):
         answer2=answer2,
         answer3=answer3,
         answer4=answer4,
-        correct_answer_index=correct_answer_index
+        correct_answer_index=correct_answer_index,
+        answer_count=answer_count
     )
     question_obj.save()
 
@@ -479,6 +491,20 @@ def manage_questions_edit(request):
     question_obj.answer3=answer3
     question_obj.answer4=answer4
     question_obj.correct_answer_index=correct_answer_index
+
+    answer_count=0
+    if answer1:
+        answer_count += 1
+    if answer2:
+        answer_count += 1
+    if answer3:
+        answer_count += 1
+    if answer4:
+        answer_count += 1
+    
+    question_obj.answer_count=answer_count
+    question_obj.save()
+
     return redirect('/view/questions/detailed?id={}'.format(chapter_id))
 
 
