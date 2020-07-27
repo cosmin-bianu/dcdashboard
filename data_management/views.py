@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from .forms import LoginForm,ChapterCreationForm,CourseCreationForm
+from .forms import LoginForm,ChapterCreationForm,CourseCreationForm,ExerciseCreationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate,login,logout
@@ -103,6 +103,7 @@ def manage_questions_view_detailed(request):
             processed_questions.append({
                 "name":question.name,
                 "author":question.author.get_full_name(),
+                "answer_count":question.answer_count,
                 "order_number":question.order_number,
                 "id":question.question_id,
                 })
@@ -192,11 +193,22 @@ def manage_courses_detailed_view(request):
 @require_http_methods(["GET"])
 @login_required(login_url='login')
 def manage_questions_add_view(request):
-
+    target_chapter_id=request.GET.get("source_chapter_id", None)
     context = {
         "page_title": "Adaugă o întrebare",
+        "form":ExerciseCreationForm(initial={
+            'question':request.GET.get("question",None),
+            'author':request.GET.get("author_id",request.user),
+            'answer1':request.GET.get("answer1",None),
+            'answer2':request.GET.get("answer2",None),
+            'answer3':request.GET.get("answer3",None),
+            'answer4':request.GET.get("answer4",None),
+            'correct_answer_index':request.GET.get("correct_answer_index",None),
+            'chapter':request.GET.get("chapter_id",target_chapter_id),
+            'order_number':request.GET.get("order_number",None),
+        }),
+        "status":request.GET.get("status", None),
     }
-            
     return render(request, "add_question.html", context)
 
 @require_http_methods(["GET"])
@@ -235,8 +247,38 @@ def manage_chapters_add_view(request):
 @require_http_methods(["GET"])
 @login_required(login_url='login')
 def manage_questions_edit_view(request):
-    #TODO
-    return render(request, "edit_course.html", context)
+    question_id=request.GET.get("id", None)
+    question_obj=FourAnswerQuestion.objects.get(question_id=question_id)
+    question=question_obj.question
+    chapter=question_obj.chapter
+    author=question_obj.author
+    order_number=question_obj.order_number
+    answer1=question_obj.answer1
+    answer2=question_obj.answer2
+    answer3=question_obj.answer3
+    answer4=question_obj.answer4
+    correct_answer_index=question_obj.correct_answer_index
+    custom_chapter=request.GET.get("chapter_id",None)
+    if custom_chapter is not None:
+        chapter=custom_chapter
+
+    context = {
+        "page_title": "Modifică o întrebare",
+        "form":CourseCreationForm(initial={
+            'question':request.GET.get("question",question),
+            'author':request.GET.get("author_id",author),
+            'correct_answer_index':request.GET.get("correct_answer_index",correct_answer_index),
+            'chapter':chapter,
+            'answer1':request.GET.get("answer1",answer1),
+            'answer2':request.GET.get("answer2",answer2),
+            'answer3':request.GET.get("answer3",answer3),
+            'answer4':request.GET.get("answer4",answer4),
+            'order_number':request.GET.get("order_number",order_number),
+            }),
+        "status":request.GET.get("status", None),
+        'question_id':question_id
+    }
+    return render(request, "edit_question.html", context)
 
 @require_http_methods(["GET"])
 @login_required(login_url='login')
@@ -299,7 +341,47 @@ def manage_chapters_edit_view(request):
 @require_http_methods(["POST"])
 @login_required(login_url='login')
 def manage_questions_add(request):
-    return redirect('view_chapters')
+    question=request.POST.get("question", None)
+    chapter_id=request.POST.get("chapter", None)
+    chapter=Chapter.objects.get(chapter_id=chapter_id)
+    author_id=request.POST.get("author", None)
+    author=User.objects.get(id=author_id)
+    order_number=request.POST.get("order_number", None)
+    answer1=request.POST.get("answer1", None)
+    answer2=request.POST.get("answer2", None)
+    answer3=request.POST.get("answer3", None)
+    answer4=request.POST.get("answer4", None)
+    correct_answer_index=request.POST.get("correct_answer_index", None)
+
+    
+    if FourAnswerExercise.objects.filter(chapter=chapter).filter(order_number=order_number).count() > 0:
+        context={
+            "question":question,
+            "chapter_id":chapter_id,
+            "author_id":author_id,
+            "order_number":order_number,
+            "answer1":answer1,
+            "answer2":answer2,
+            "answer3":answer3,
+            "answer4":answer4,
+            "correct_answer_index":correct_answer_index,
+        }
+        return redirect('/view/questions/add?status=1&{}'.format(urllib.parse.urlencode(context)))
+
+    question_obj=FourAnswerExercise(
+        question=question,
+        chapter=chapter,
+        author=author,
+        order_number=order_number,
+        answer1=answer1,
+        answer2=answer2,
+        answer3=answer3,
+        answer4=answer4,
+        correct_answer_index=correct_answer_index
+    )
+    question_obj.save()
+
+    return redirect('/view/questions/detailed?id={}'.format(chapter_id))
 
 @require_http_methods(["POST"])
 @login_required(login_url='login')
@@ -358,8 +440,46 @@ def manage_chapters_add(request):
 @require_http_methods(["POST"])
 @login_required(login_url='login')
 def manage_questions_edit(request):
-    #TODO
-    return redirect('view_chapters')
+    question_id=request.POST.get("question_id", None)
+    question_obj=FourAnswerQuestion.objects.get(pk=question_id)
+    question=request.POST.get("question", None)
+    chapter_id=request.POST.get("chapter", None)
+    chapter=Chapter.objects.get(chapter_id=chapter_id)
+    author_id=request.POST.get("author", None)
+    author=User.objects.get(id=author_id)
+    order_number=request.POST.get("order_number", None)
+    answer1=request.POST.get("answer1", None)
+    answer2=request.POST.get("answer2", None)
+    answer3=request.POST.get("answer3", None)
+    answer4=request.POST.get("answer4", None)
+    correct_answer_index=request.POST.get("correct_answer_index", None)
+
+    if (int(order_number) != int(question_obj.order_number) or int(question_obj.chapter.chapter_id) != int(chapter_id)) \
+        and FourAnswerQuestion.objects.filter(chapter=chapter).filter(order_number=order_number).count() > 0:
+        context={
+            "question":question,
+            "chapter_id":chapter_id,
+            "author_id":author_id,
+            "order_number":order_number,
+            "answer1":answer1,
+            "answer2":answer2,
+            "answer3":answer3,
+            "answer4":answer4,
+            "correct_answer_index":correct_answer_index,
+            "id":question_id,
+        }
+        return redirect('/view/courses/edit?status=1&{}'.format(urllib.parse.urlencode(context)))
+
+    question_obj.question=question
+    question_obj.chapter=chapter
+    question_obj.author=author
+    question_obj.order_number=order_number
+    question_obj.answer1=answer1
+    question_obj.answer2=answer2
+    question_obj.answer3=answer3
+    question_obj.answer4=answer4
+    question_obj.correct_answer_index=correct_answer_index
+    return redirect('/view/questions/detailed?id={}'.format(chapter_id))
 
 
 @require_http_methods(["POST"])
@@ -393,7 +513,7 @@ def manage_courses_edit(request):
     course.chapter=chapter
     course.order_number=order_number
     course.save()
-    return redirect('/view/courses/detailed?id={}'.format(chapter.chapter_id))
+    return redirect('/view/courses/detailed?id={}'.format(chapter_id))
 
 
 @require_http_methods(["POST"])
@@ -425,8 +545,9 @@ def manage_chapters_edit(request):
 @login_required(login_url='login')
 def manage_questions_remove(request):
     target_id = request.GET.get("id", None)
-    Exercise.objects.filter(exercise_id=target_id).delete()
-    return redirect('view_chapters')
+    source_chapter_id = request.GET.get("source_chapter_id", None)
+    FourAnswerExercise.objects.filter(pk=target_id).delete()
+    return redirect('/view/questions/detailed?id={}'.format(source_chapter_id))
 
 @require_http_methods(["GET"])
 @login_required(login_url='login')

@@ -1,5 +1,5 @@
 from django import forms
-from data_management.models import Chapter,TwoAnswerExercise,FourAnswerExercise,Course
+from data_management.models import Chapter,FourAnswerExercise,Course
 from django.contrib.auth.models import User
 
 class LoginForm(forms.Form):
@@ -35,4 +35,21 @@ class CourseCreationForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Numele lecției'}),
             'content': forms.Textarea(attrs={'class': 'input is-medium mb-3', 'placeholder':'Conținut'}),
             'order_number': forms.NumberInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Numărul de ordine'}),
+        }
+
+class ExerciseCreationForm(forms.ModelForm):
+    chapter = NameModelChoiceField(queryset=Chapter.objects.all())
+    author=FullNameModelChoiceField(queryset=User.objects.all())
+    class Meta:
+        model = FourAnswerExercise
+        fields = ('question','chapter','author','answer1','answer2','answer3','answer4','correct_answer_index')
+
+        widgets = {
+            'question': forms.Textarea(attrs={'class': 'input is-medium mb-3', 'placeholder':'Întrebarea'}),
+            'order_number': forms.NumberInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Numărul de ordine'}),
+            'answer1': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Opțiunea 1'}),
+            'answer2': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Opțiunea 2'}),
+            'answer3': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Opțiunea 3'}),
+            'answer4': forms.TextInput(attrs={'class': 'input is-medium mb-3', 'placeholder':'Opțiunea 4'}),
+            'correct_answer_index': forms.ChoiceField(attrs={'class': 'is-medium mb-3'})
         }

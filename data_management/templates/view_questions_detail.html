@@ -14,7 +14,8 @@
     <thead>
         <tr>
             <th>Nr.</th>
-            <th class="table-cell">Numele întrebării</th>
+            <th class="table-cell">Întrebarea</th>
+            <th class="table-cell">Răspunsuri</th>
             <th class="table-cell">Autor</th>
             <th>
                 <a href="/view/questions/add?source_chapter_id={{ source_chapter_id }}" class="button is-rounded is-primary">
@@ -38,9 +39,11 @@
                         {{ question.name }}
                     </a>
                 </td>
+                <td> {{ question.answer_count }} </td>
                 <td> {{ question.author }} </td>
                 <td>
                     <button onclick="openConfirmationDialog('{{ question.name }}','/manage/questions/remove?id={{ question.id }}&source_chapter_id={{ source_chapter_id }}')" class="button is-danger is-small has-text-weight-bold">Șterge</button>
+                </td>
                 {% comment %} </td>
                     <a href="/manage/courses/remove?id={{ course.id }}&source_id={{ chapter_id }}" class="button is-danger is-small has-text-weight-bold"> Șterge </a> 
                 </td> {% endcomment %}

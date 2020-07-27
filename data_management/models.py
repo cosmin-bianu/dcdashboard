@@ -34,6 +34,9 @@ class Exercise(models.Model):
     question_id=models.SmallAutoField(primary_key=True)
     question=models.CharField(max_length=max_question_length)
     chapter=models.ForeignKey("Chapter", on_delete=models.CASCADE)
+    author=models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    order_number=models.SmallIntegerField()
+    answer_count=models.SmallIntegerField()
 
 
 class TwoAnswerExercise(Exercise):
@@ -59,6 +62,9 @@ class FourAnswerExercise(Exercise):
         (3,"3"),
         (4,"4"),
     ))
+
+    class Meta:
+        ordering=['order_number',]
 
 class Course(models.Model):
     max_content_length=300 #characters
