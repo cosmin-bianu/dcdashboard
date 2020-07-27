@@ -33,6 +33,7 @@ class Exercise(models.Model):
 
     question_id=models.SmallAutoField(primary_key=True)
     question=models.CharField(max_length=max_question_length)
+    chapter=models.ForeignKey("Chapter", on_delete=models.CASCADE)
 
 
 class TwoAnswerExercise(Exercise):
@@ -47,10 +48,10 @@ class TwoAnswerExercise(Exercise):
 
 class FourAnswerExercise(Exercise):
     max_answer_length=100 #characters
-    answer1=models.CharField(max_length=max_answer_length)
-    answer2=models.CharField(max_length=max_answer_length)
-    answer3=models.CharField(max_length=max_answer_length)
-    answer4=models.CharField(max_length=max_answer_length)
+    answer1=models.CharField(max_length=max_answer_length, required=False)
+    answer2=models.CharField(max_length=max_answer_length, required=False)
+    answer3=models.CharField(max_length=max_answer_length, required=False)
+    answer4=models.CharField(max_length=max_answer_length, required=False)
     
     correct_answer_index=models.PositiveSmallIntegerField(choices=(
         (1,"1"),
