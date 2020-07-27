@@ -1,13 +1,9 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
-      <h1 class="title is-size-3 has-text-weight-bold is-large">
+      <h1 class="title is-size-1 has-text-weight-bold">
           Drept civil
       </h1>
-      {% comment %} <h2 class="subtitle has-text-grey-light has-text-left ml-3">
-          {{ user.get_full_name }}
-      </h2> 
-    </a> {% endcomment %}
   </div>
 
   {% if user.is_authenticated %}
@@ -39,6 +35,6 @@
       </div>
     </div>
 
-    {% endif %}
   </div>
+  {% endif %}
 </nav>
