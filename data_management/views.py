@@ -324,9 +324,7 @@ def manage_courses_edit(request):
     chapter=Chapter.objects.get(pk=chapter_id)
     order_number=request.POST.get("order_number", None)
 
-
-
-    if (int(order_number) != int(course.order_number) or int(course.chapter.chapter_id != chapter_id)) \
+    if (int(order_number) != int(course.order_number) or int(course.chapter.chapter_id) != int(chapter_id)) \
         and Course.objects.filter(chapter=chapter).filter(order_number=order_number).count() > 0:
         context={
             "name":name,
