@@ -536,7 +536,7 @@ def manage_questions_edit(request):
             "answer4":answer4,
             "correct_answer_index":correct_answer_index,
         }
-        return redirect('/view/questions/add?status=2&{}'.format(urllib.parse.urlencode(context)))
+        return redirect('/view/questions/edit?status=2&{}'.format(urllib.parse.urlencode(context)))
 
     answer_count=0
     if answer1:
