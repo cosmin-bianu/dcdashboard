@@ -56,11 +56,12 @@ class FourAnswerExercise(Exercise):
         ordering=['order_number',]
 
 class Course(models.Model):
+    max_content_length=100000
 
     course_id=models.SmallAutoField(primary_key=True)
     name=models.CharField(max_length=100) #characters
     author=models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    content=models.CharField()
+    content=models.CharField(max_length=max_content_length)
     order_number=models.PositiveSmallIntegerField()
     chapter=models.ForeignKey("Chapter", on_delete=models.CASCADE)
     
