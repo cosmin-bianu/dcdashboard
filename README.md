@@ -85,7 +85,7 @@ You can download the latest version of Python [here](https://www.python.org/down
 
 ### Installation
 
-Simply clone the lmdashboard
+* Simply clone the lmdashboard
 
    ```sh
    git clone https://github.com/cosmin-bianu/lmdashboard.git -o lmdashboard
