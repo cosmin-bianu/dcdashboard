@@ -18,10 +18,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/cosmin-bianu/dcdashboard">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
   <h3 align="center">Content Manangement Dashboard</h3>
 
   <p align="center">
