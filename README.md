@@ -62,6 +62,7 @@
 
 ### Built With
 
+* [Python 3](https://python.org/)
 * [Django](https://www.djangoproject.com/)
 
 <!-- GETTING STARTED -->
@@ -71,30 +72,39 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+
+* Python 3
+
+You can download the latest version of Python [here](https://www.python.org/downloads/release/python-2718/)
+
+* Django
+
   ```sh
-  npm install npm@latest -g
+  pip3 install django
   ```
 
 ### Installation
 
-1. Clone the lmdashboard
-   ```sh
-   git clone https://github.com/cosmin-bianu/lmdashboard.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
+Simply clone the lmdashboard
 
-
+ ```sh
+ git clone https://github.com/cosmin-bianu/lmdashboard.git -o lmdashboard
+ ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+1. Change the directory to the folder of the cloned repository
 
+```sh
+cd lmdashboard
+```
+
+2. Start the server
+
+```sh
+python3 manage.py runserver
+```
 
 <!-- ROADMAP -->
 ## Roadmap
