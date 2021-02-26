@@ -23,13 +23,7 @@
   <p align="center">
     A dashboard meant to be used with the 'Lesson delivery app' to deliver text lectures in the form of lessons categorised by chapters 
     <br />
-    <a href="https://github.com/cosmin-bianu/lmdashboard"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="https://github.com/cosmin-bianu/lmdashboard">View Demo</a>
-    ·
-    <a href="https://github.com/cosmin-bianu/lmdashboard/issues">lmdashboard Bug</a>
-    ·
     <a href="https://github.com/cosmin-bianu/lmdashboard/issues">Request Feature</a>
   </p>
 </p>
