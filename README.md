@@ -18,7 +18,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <h3 align="center">Content Manangement Dashboard</h3>
+  <h3 align="center">Lesson Manangement Dashboard</h3>
 
   <p align="center">
     A dashboard meant to be used with the 'Lesson delivery app' to deliver text lectures in the form of lessons categorised by chapters 
