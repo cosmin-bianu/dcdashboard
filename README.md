@@ -87,24 +87,24 @@ You can download the latest version of Python [here](https://www.python.org/down
 
 Simply clone the lmdashboard
 
- ```sh
- git clone https://github.com/cosmin-bianu/lmdashboard.git -o lmdashboard
- ```
+   ```sh
+   git clone https://github.com/cosmin-bianu/lmdashboard.git -o lmdashboard
+   ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 1. Change the directory to the folder of the cloned repository
 
-```sh
-cd lmdashboard
-```
+  ```sh
+  cd lmdashboard
+  ```
 
 2. Start the server
 
-```sh
-python3 manage.py runserver
-```
+  ```sh
+  python3 manage.py runserver
+  ```
 
 <!-- ROADMAP -->
 ## Roadmap
