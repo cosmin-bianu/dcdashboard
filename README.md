@@ -25,7 +25,7 @@
   <h3 align="center">Content Manangement Dashboard</h3>
 
   <p align="center">
-    A dashboard meant to be used with the 'Sample content app' to deliver text lectures in the form of lessons categorised by chapters 
+    A dashboard meant to be used with the 'Lesson delivery app' to deliver text lectures in the form of lessons categorised by chapters 
     <br />
     <a href="https://github.com/cosmin-bianu/dcdashboard"><strong>Explore the docs »</strong></a>
     <br />
@@ -71,20 +71,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`cosmin-bianu`, `dcdashboard`, `twitter_handle`, `kitsune.cosmin@gmail.com`, `Content Manangement Dashboard`, `A dashboard meant to be used with the 'Sample content app' to deliver text lectures in the form of lessons categorised by chapters `
-
-
 ### Built With
 
-* []()
-* []()
-* []()
-
-
+* [Django](https://www.djangoproject.com/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -151,21 +140,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - kitsune.cosmin@gmail.com
+Email: kitsune.cosmin@gmail.com
 
 Project Link: [https://github.com/cosmin-bianu/dcdashboard](https://github.com/cosmin-bianu/dcdashboard)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
-
-
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
