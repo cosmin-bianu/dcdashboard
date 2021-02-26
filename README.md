@@ -23,14 +23,14 @@
   <p align="center">
     A dashboard meant to be used with the 'Lesson delivery app' to deliver text lectures in the form of lessons categorised by chapters 
     <br />
-    <a href="https://github.com/cosmin-bianu/dcdashboard"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/cosmin-bianu/lmdashboard"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/cosmin-bianu/dcdashboard">View Demo</a>
+    <a href="https://github.com/cosmin-bianu/lmdashboard">View Demo</a>
     ·
-    <a href="https://github.com/cosmin-bianu/dcdashboard/issues">dcdashboardrt Bug</a>
+    <a href="https://github.com/cosmin-bianu/lmdashboard/issues">lmdashboard Bug</a>
     ·
-    <a href="https://github.com/cosmin-bianu/dcdashboard/issues">Request Feature</a>
+    <a href="https://github.com/cosmin-bianu/lmdashboard/issues">Request Feature</a>
   </p>
 </p>
 
@@ -85,9 +85,9 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Clone the dcdashboard
+1. Clone the lmdashboard
    ```sh
-   git clone https://github.com/cosmin-bianu/dcdashboard.git
+   git clone https://github.com/cosmin-bianu/lmdashboard.git
    ```
 2. Install NPM packages
    ```sh
@@ -105,7 +105,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/cosmin-bianu/dcdashboard/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/cosmin-bianu/lmdashboard/issues) for a list of proposed features (and known issues).
 
 
 
@@ -134,20 +134,20 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Email: kitsune.cosmin@gmail.com
 
-Project Link: [https://github.com/cosmin-bianu/dcdashboard](https://github.com/cosmin-bianu/dcdashboard)
+Project Link: [https://github.com/cosmin-bianu/lmdashboard](https://github.com/cosmin-bianu/lmdashboard)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/cosmin-bianu/dcdashboard.svg?style=for-the-badge
-[contributors-url]: https://github.com/cosmin-bianu/dcdashboard/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/cosmin-bianu/dcdashboard.svg?style=for-the-badge
-[forks-url]: https://github.com/cosmin-bianu/dcdashboard/network/members
-[stars-shield]: https://img.shields.io/github/stars/cosmin-bianu/dcdashboard.svg?style=for-the-badge
-[stars-url]: https://github.com/cosmin-bianu/dcdashboard/stargazers
-[issues-shield]: https://img.shields.io/github/issues/cosmin-bianu/dcdashboard.svg?style=for-the-badge
-[issues-url]: https://github.com/cosmin-bianu/dcdashboard/issues
-[license-shield]: https://img.shields.io/github/license/cosmin-bianu/dcdashboard.svg?style=for-the-badge
-[license-url]: https://github.com/cosmin-bianu/dcdashboard/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/cosmin-bianu/lmdashboard.svg?style=for-the-badge
+[contributors-url]: https://github.com/cosmin-bianu/lmdashboard/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/cosmin-bianu/lmdashboard.svg?style=for-the-badge
+[forks-url]: https://github.com/cosmin-bianu/lmdashboard/network/members
+[stars-shield]: https://img.shields.io/github/stars/cosmin-bianu/lmdashboard.svg?style=for-the-badge
+[stars-url]: https://github.com/cosmin-bianu/lmdashboard/stargazers
+[issues-shield]: https://img.shields.io/github/issues/cosmin-bianu/lmdashboard.svg?style=for-the-badge
+[issues-url]: https://github.com/cosmin-bianu/lmdashboard/issues
+[license-shield]: https://img.shields.io/github/license/cosmin-bianu/lmdashboard.svg?style=for-the-badge
+[license-url]: https://github.com/cosmin-bianu/lmdashboard/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/cosmin-bianu
