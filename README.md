@@ -28,7 +28,7 @@
     <br />
     <a href="https://github.com/cosmin-bianu/dcdashboard">View Demo</a>
     ·
-    <a href="https://github.com/cosmin-bianu/dcdashboard/issues">Report Bug</a>
+    <a href="https://github.com/cosmin-bianu/dcdashboard/issues">dcdashboardrt Bug</a>
     ·
     <a href="https://github.com/cosmin-bianu/dcdashboard/issues">Request Feature</a>
   </p>
@@ -86,7 +86,7 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Clone the repo
+1. Clone the dcdashboard
    ```sh
    git clone https://github.com/cosmin-bianu/dcdashboard.git
    ```
@@ -143,15 +143,15 @@ Project Link: [https://github.com/cosmin-bianu/dcdashboard](https://github.com/c
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/cosmin-bianu/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/cosmin-bianu/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/cosmin-bianu/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/cosmin-bianu/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/cosmin-bianu/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/cosmin-bianu/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/cosmin-bianu/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/cosmin-bianu/repo/issues
-[license-shield]: https://img.shields.io/github/license/cosmin-bianu/repo.svg?style=for-the-badge
-[license-url]: https://github.com/cosmin-bianu/repo/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/cosmin-bianu/dcdashboard.svg?style=for-the-badge
+[contributors-url]: https://github.com/cosmin-bianu/dcdashboard/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/cosmin-bianu/dcdashboard.svg?style=for-the-badge
+[forks-url]: https://github.com/cosmin-bianu/dcdashboard/network/members
+[stars-shield]: https://img.shields.io/github/stars/cosmin-bianu/dcdashboard.svg?style=for-the-badge
+[stars-url]: https://github.com/cosmin-bianu/dcdashboard/stargazers
+[issues-shield]: https://img.shields.io/github/issues/cosmin-bianu/dcdashboard.svg?style=for-the-badge
+[issues-url]: https://github.com/cosmin-bianu/dcdashboard/issues
+[license-shield]: https://img.shields.io/github/license/cosmin-bianu/dcdashboard.svg?style=for-the-badge
+[license-url]: https://github.com/cosmin-bianu/dcdashboard/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/cosmin-bianu
