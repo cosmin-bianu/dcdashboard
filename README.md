@@ -105,6 +105,8 @@ You can download the latest version of Python [here](https://www.python.org/down
   ```sh
   python3 manage.py runserver
   ```
+  
+3. Make not of the port and connect to localhost:[port] with your favourite browser
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -136,7 +138,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Email: kitsune.cosmin@gmail.com
+Cosmin Bianu - kitsune.cosmin@gmail.com
 
 Project Link: [https://github.com/cosmin-bianu/lmdashboard](https://github.com/cosmin-bianu/lmdashboard)
 
