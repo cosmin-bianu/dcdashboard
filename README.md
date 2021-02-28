@@ -24,6 +24,8 @@
     A dashboard used to publish chapters and lessons to a Parse server so that they can be retrieved by a <a href="https://github.com/cosmin-bianu/lmandroid"> Lesson Management App</a>. This project has been developed to aid schools in delivering lessons during the COVID-19 pandemic.
     <br />
     <br />
+    <a href="https://github.com/cosmin-bianu/lmdashboard/issues">Report a bug</a>
+    .
     <a href="https://github.com/cosmin-bianu/lmdashboard/issues">Request Feature</a>
   </p>
 </p>
