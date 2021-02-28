@@ -21,7 +21,7 @@
   <h3 align="center">Lesson Manangement Dashboard</h3>
 
   <p align="center">
-    A dashboard meant to be used with the 'Lesson delivery app' to deliver text lectures in the form of lessons categorised by chapters 
+    A dashboard used to publish chapters and lessons to a Parse server so that they can be retrieved by a <a href="https://github.com/cosmin-bianu/lmandroid"> Lesson Management App</a>. This project has been developed to aid schools in delivering lessons during the COVID-19 pandemic.
     <br />
     <br />
     <a href="https://github.com/cosmin-bianu/lmdashboard/issues">Request Feature</a>
